@@ -1,0 +1,126 @@
+.mainContainer {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.top {
+    grid-row: 1/2;
+}
+
+.box {
+    height: 120px;
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 60px;
+    border: 1px solid gainsboro;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxTop {
+    height: 40%;
+    border-bottom: 1px solid gainsboro;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+
+.boxTopLeft {
+    border-right: 1px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxTopRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.boxBottom {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+.boxBottomLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.certiDate {
+    rotate: -90deg;
+}
+
+.certiDate p {
+    margin: 0;
+}
+
+.boxBottomRight {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 1px solid gainsboro;
+}
+
+.boxBottomRight img {
+    height: 50px;
+}
+
+.bottom {
+    grid-row: 2/3;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.label {
+    height: 20px;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.553);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(.8px);
+    margin-bottom: 1px;
+}
+
+.label p {
+    font-family: "Founders Grotesk";
+    font-weight: 200;
+    margin: 0;
+    color: white;
+    font-size: 11px;
+    padding: 0 5px;
+}
+
+.progressContainer {
+    height: 400px;
+    width: 650px;
+    margin-bottom: 80px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border: 1px solid gainsboro;
+}
+
+.progress p {
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}

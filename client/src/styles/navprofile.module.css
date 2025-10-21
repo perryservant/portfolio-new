@@ -1,0 +1,81 @@
+.mainContainer {
+    position: absolute;
+    height: 40px;
+    width: auto;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.menuText, .menuTextMiddle {
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.menuTextMiddle {
+    margin: 0 15px;
+}
+
+.grab, .menu, .portfolio, .language {
+    background-color: rgba(255, 255, 255, 0.176);
+    backdrop-filter: blur(.9px);
+    width: auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grab {
+    padding: 0;
+    cursor: grab;
+    transition: 1ms ease-in-out;
+}
+
+.grab:active {
+    cursor: grabbing;
+}
+
+.grab:hover {
+    color: white;
+}
+
+.grabIcon {
+    font-size: 30px;
+    transition: .2s ease-in-out;
+}
+
+
+.menu {
+    display: flex;
+
+}
+
+.portfolio {
+   
+}
+
+.language {
+
+}
+
+.tooltipText {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: -55%; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.grab:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
+}

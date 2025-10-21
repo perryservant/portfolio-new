@@ -1,0 +1,77 @@
+.maincontainer {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1px 2fr 1fr;
+    column-gap: 1px;
+    height: 100%;
+    width: 100%;
+}
+
+.dp {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(28, 28, 28);
+    grid-column: 3/4;
+}
+
+.dp p {
+    color: white;
+}
+
+.info {
+    background-color: rgb(28, 28, 28);
+    grid-column: 2/3;
+    overflow: scroll;
+}
+
+.left {
+    grid-column: 1/2;
+    background-color: rgb(28, 28, 28);
+}
+
+.experience {
+    width: 100%;
+    height: 1000px;
+    padding: 20px;
+}
+
+.experience p {
+    color: white;
+    font-size: 11px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    margin-top: 30px;
+}
+
+.pic {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 175px;
+    width: 165px;
+    background-color: white;
+    padding-bottom: 5px;
+}
+
+.pic img {
+    height: 150px;
+    width: 150px;
+}
