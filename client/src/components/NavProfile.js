@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from '../styles/navprofile.module.css';
+import { NavLink } from 'react-router-dom';
 
+import styles from '../styles/navprofile.module.css';
 import { GoGrabber } from "react-icons/go";
 
-const NavProfile = () => {
+const NavProfile = ({ location }) => {
     const containerRef = useRef(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const currentPath = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
 
     useEffect(() => {
         const updatePosition = () => {
@@ -21,8 +24,6 @@ const NavProfile = () => {
         };
 
         updatePosition();
-
-        return () => window.removeEventListener('resize', updatePosition);
     }, []);
 
     const handleMouseDown = (e) => {
@@ -60,17 +61,39 @@ const NavProfile = () => {
                 <GoGrabber className={styles.grabIcon}/>
                 <span className={styles.tooltipText}>GRAB</span>
             </div>
-            <div className={styles.menu}>
-                <p className={styles.menuText}>cd:</p>
-                <p className={styles.menuTextMiddle}>\ novellum \ home</p>
-                <p>[]</p>
+            <div className={styles.menuWrapper}>
+                <div className={styles.menuSection} onClick={() => setMenuOpen(!menuOpen)}>
+                    <div className={styles.menuHeader}>
+                        <p className={styles.menuText}>cd:</p>
+                        <p className={styles.menuTextMiddle}>\ novellum \</p>
+                    </div>
+                </div>
+                
+                <div 
+                    className={`${styles.menuPanel} ${menuOpen ? styles.menuPanelOpen : ''}`}
+                    aria-hidden={!menuOpen}
+                    role="menu"
+                >
+                    <ul className={styles.menuList}>
+                        <li role="menuitem"><NavLink to='/'>home</NavLink></li>
+                        <li role="menuitem"><NavLink to='projects'>projects</NavLink></li>
+                    </ul>
+                </div>
+                
             </div>
+                
             <div className={styles.portfolio}>
-                <p className={styles.menuText}>perry_servant</p>
+                <p className={styles.menuText}>perry_servant \</p>
             </div>
             <div className={styles.language}>
-                <p className={styles.menuText}>javascript</p>
+                <p className={styles.menuText}>{currentPath} \</p>
             </div>
+
+            {currentPath.startsWith('projectpage') && (
+                <div className={styles.projectName}>
+                    <p className={styles.menuText}>novellum \</p>
+                </div>
+            )}
         </div>
     );
 };

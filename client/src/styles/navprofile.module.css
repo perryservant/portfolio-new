@@ -15,12 +15,12 @@
 }
 
 .menuTextMiddle {
-    margin: 0 15px;
+    margin-left: 15px;
 }
 
-.grab, .menu, .portfolio, .language {
-    background-color: rgba(255, 255, 255, 0.176);
-    backdrop-filter: blur(.9px);
+.grab, .menuSection, .portfolio, .language, .projectName {
+    background-color: rgba(255, 255, 255, 0.218);
+    backdrop-filter: blur(1px);
     width: auto;
     padding: 0 10px;
     display: flex;
@@ -47,10 +47,102 @@
     transition: .2s ease-in-out;
 }
 
-
-.menu {
+.menuWrapper {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1000;
+}
 
+.menuSection {
+    display: flex;
+    padding: 0 10px;
+    height: 40px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menuHeader {
+    display: flex;
+    align-items: center;
+}
+
+.menuPanel {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    background-color: rgba(255, 255, 255, 0.176);
+    backdrop-filter: blur(.9px);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 740ms cubic-bezier(.2,.9,.2,1), opacity 80ms ease-in-out;
+    overflow: hidden;
+}
+
+.menuPanelOpen {
+    width: 100%;
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menuList {
+    list-style: none;
+    margin: 0;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menuList li {
+    padding: 8px 14px;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.menuList li:hover {
+    background-color: rgba(255,255,255,0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menuPanel,
+    .menuPanelOpen {
+        transition: none;
+        transform: none;
+    }
+}
+
+.menuOpen {
+    margin-top: 2px;
+    max-height: 200px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+}
+
+.menu li {
+    padding: 6px 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: rgba(255, 255, 255, 0.176);
 }
 
 .portfolio {
@@ -58,6 +150,10 @@
 }
 
 .language {
+
+}
+
+.projectName {
 
 }
 

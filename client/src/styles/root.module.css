@@ -3,7 +3,7 @@
 }
 
 .rootContainer {
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(241, 241, 241);
     height: 100dvh;
     width: 100%;
     overflow: hidden;
@@ -17,4 +17,73 @@
     height: 100%;
     opacity: 0.08;
     pointer-events: none;
+}
+
+/* Box Section */
+
+.box {
+    position: absolute;
+    height: 120px;
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 60px;
+    border: 1px solid gainsboro;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxTop {
+    height: 40%;
+    border-bottom: 1px solid gainsboro;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+
+.boxTopLeft {
+    border-right: 1px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxTopRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.boxBottom {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+.boxBottomLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.certiDate {
+    rotate: -90deg;
+}
+
+.certiDate p {
+    margin: 0;
+}
+
+.boxBottomRight {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 1px solid gainsboro;
+}
+
+.boxBottomRight img {
+    height: 50px;
 }

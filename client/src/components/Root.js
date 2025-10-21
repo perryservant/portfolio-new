@@ -1,11 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
+import { PiStackLight } from "react-icons/pi";
 import styles from '../styles/root.module.css';
 import NavProfile from "./NavProfile";
 
 const Root = () => {
   const canvasRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,8 +15,8 @@ const Root = () => {
     let animationFrameId;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     };
 
     const generateNoise = () => {
@@ -28,8 +30,8 @@ const Root = () => {
     };
 
     const loop = () => {
-      generateNoise();
-      animationFrameId = requestAnimationFrame(loop);
+        generateNoise();
+        animationFrameId = requestAnimationFrame(loop);
     };
 
     resize();
@@ -37,9 +39,10 @@ const Root = () => {
     window.addEventListener("resize", resize);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
+        cancelAnimationFrame(animationFrameId);
+        window.removeEventListener("resize", resize);
     };
+
   }, []);
 
   return (
@@ -47,8 +50,31 @@ const Root = () => {
         <canvas
             ref={canvasRef} className={styles.canva}
         />
+        <div className={styles.box}>
+              <div className={styles.boxTop}>
+                  <div className={styles.boxTopLeft}>
+                      <p>Full-Stack Engineer</p>
+                  </div>
+                  <div className={styles.boxTopRight}>
+                      <PiStackLight className={styles.icon}/>
+                  </div>
+              </div>
+              <div className={styles.boxBottom}>
+                  <div className={styles.boxBottomLeft}>
+                      <div className={styles.certiDate}>
+                          <p>SEPT</p>
+                          <p>25</p>
+                      </div>
+                      
+                  </div>
+                  <div className={styles.boxBottomRight}>
+                      <img src='imgs/Full-Stack Engineer  Codecademy[1] copy.png.png' alt=''/>
+                      <p>880DD579-4</p>
+                  </div>
+              </div>
+        </div>
         <div>
-            <NavProfile/>
+            <NavProfile location={location}/>
         </div>
         <div>
             <Outlet />
