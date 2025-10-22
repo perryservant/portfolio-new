@@ -77,6 +77,7 @@ const NavProfile = ({ location }) => {
                     <ul className={styles.menuList}>
                         <li role="menuitem"><NavLink to='/'>home</NavLink></li>
                         <li role="menuitem"><NavLink to='projects'>projects</NavLink></li>
+                        <li role="menuitem"><NavLink to='contact'>contact</NavLink></li>
                     </ul>
                 </div>
                 
@@ -92,6 +93,12 @@ const NavProfile = ({ location }) => {
             {currentPath.startsWith('projectpage') && (
                 <div className={styles.projectName}>
                     <p className={styles.menuText}>novellum \</p>
+                </div>
+            )}
+
+            {currentPath.startsWith('contact') && (
+                <div className={styles.hireMe}>
+                    <p className={styles.menuText}>hire me \</p>
                 </div>
             )}
         </div>

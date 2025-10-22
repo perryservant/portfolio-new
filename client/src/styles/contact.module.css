@@ -1,0 +1,119 @@
+.mainContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+.top {
+    height: 100px;
+}
+
+.bottom {
+    flex: 1;
+    display: flex;
+}
+
+.left {
+    width: 50%;
+    display: flex;
+    align-items: end;
+    padding-left: 30px;
+}
+
+.contactInfo {
+    margin-bottom: 200px;
+    width: 400px;
+}
+
+.contactInfo p {
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.contactInfo span {
+    font-weight: 700;
+}
+
+/* Form Section*/
+
+.containerForm {
+    width: 400px;
+}
+
+.contactForm {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+}
+
+input {
+    border: none;
+    margin: 0;
+    background: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+.customCheckbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 11px;
+    height: 11px;
+    border: 1px solid black;
+    background-color: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.customCheckbox:checked::after {
+    content: "✔";
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -57%);
+    font-size: 14px;
+}
+
+button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.contactForm p {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 0;
+}
+
+.contactForm span {
+    color: rgb(183, 183, 183);
+}
+
+.between {
+    margin-top: 50px;
+}
+
+.middleConsole {
+    margin-top: 50px;
+}
+
+.bottomConsole {
+    margin-top: 50px;
+}

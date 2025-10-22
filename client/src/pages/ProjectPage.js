@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/projectpage.module.css';
 
+import { GoGrabber } from "react-icons/go";
+
 const ProjectPage = () => {
     const containerRef1 = useRef(null);
     const containerRef2 = useRef(null);
@@ -87,7 +89,8 @@ const ProjectPage = () => {
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseUp}
                     >
-                        <p>project img [0]</p>
+                        <p>project img [1]</p>
+                        <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
                         <img src='/imgs/Screenshot 2025-10-20 at 16.53.44.png' alt=''/>
@@ -111,7 +114,8 @@ const ProjectPage = () => {
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseUp}
                     >
-                        <p>project img [1]</p>
+                        <p>project img [0]</p>
+                        <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
                         <img src='/imgs/Screenshot 2025-10-20 at 16.53.44.png' alt=''/>
@@ -120,6 +124,10 @@ const ProjectPage = () => {
                 <div className={styles.projectDesc}>
                     <p>
                         This project is a full-stack web application designed to showcase 
+                        a complete workflow from frontend to backend. It demonstrates 
+                        responsive design, dynamic user interactions, and integration 
+                        with APIs and databases, highlighting both functionality and user 
+                        experience in a modern web environment.This project is a full-stack web application designed to showcase 
                         a complete workflow from frontend to backend. It demonstrates 
                         responsive design, dynamic user interactions, and integration 
                         with APIs and databases, highlighting both functionality and user 
@@ -133,10 +141,7 @@ const ProjectPage = () => {
 
                     <div>
                         <div>
-
-                        </div>
-                        <div>
-
+                            <h3>Novellum LTD</h3>
                         </div>
                     </div>
                 </div>
