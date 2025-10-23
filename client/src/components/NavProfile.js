@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useProject } from '../context/ProjectContext';
 
 import styles from '../styles/navprofile.module.css';
 import { GoGrabber } from "react-icons/go";
 
 const NavProfile = ({ location }) => {
+    const { selectedProject } = useProject();
+
     const containerRef = useRef(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
@@ -13,18 +16,20 @@ const NavProfile = ({ location }) => {
 
     const currentPath = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
 
-    useEffect(() => {
-        const updatePosition = () => {
-            if (containerRef.current) {
-                const rect = containerRef.current.getBoundingClientRect();
-                const centerX = window.innerWidth / 2 - rect.width / 2;
-                const centerY = window.innerHeight / 2 - rect.height / 2;
-                setPos({ x: centerX, y: centerY });
-            }
-        };
+    const updatePosition = () => {
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const centerX = window.innerWidth / 2 - rect.width / 2;
+            const centerY = window.innerHeight / 2 - rect.height / 2;
+            setPos({ x: centerX, y: centerY });
+        }
+    };
 
+    useEffect(() => {
         updatePosition();
     }, []);
+
+    console.log(selectedProject)
 
     const handleMouseDown = (e) => {
         setDragging(true);
@@ -78,6 +83,7 @@ const NavProfile = ({ location }) => {
                         <li role="menuitem"><NavLink to='/'>home</NavLink></li>
                         <li role="menuitem"><NavLink to='projects'>projects</NavLink></li>
                         <li role="menuitem"><NavLink to='contact'>contact</NavLink></li>
+                        <li role="menuitem"><NavLink to='about'>about</NavLink></li>
                     </ul>
                 </div>
                 
@@ -92,7 +98,7 @@ const NavProfile = ({ location }) => {
 
             {currentPath.startsWith('projectpage') && (
                 <div className={styles.projectName}>
-                    <p className={styles.menuText}>novellum \</p>
+                    <p className={styles.menuText}>{selectedProject?.name} \</p>
                 </div>
             )}
 

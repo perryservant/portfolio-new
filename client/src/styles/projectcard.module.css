@@ -51,6 +51,7 @@
 
 .language p {
     padding: 0 3px;
+    text-transform: uppercase;
 }
 
 .blue {

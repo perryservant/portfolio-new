@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useProject } from '../context/ProjectContext';
+
 import styles from '../styles/projectpage.module.css';
 
 import { GoGrabber } from "react-icons/go";
+import api from '../api/Axios';
 
 const ProjectPage = () => {
+    const { id } = useParams();
+    const [projectData, setProjectData] = useState({});
+    const { setSelectedProject } = useProject();
+
     const containerRef1 = useRef(null);
     const containerRef2 = useRef(null);
     const [dragging, setDragging] = useState(null);
@@ -16,6 +24,22 @@ const ProjectPage = () => {
         img1: { x: 0, y: 0 },
         img2: { x: 0, y: 0 },
     });
+
+    const languageColors = {
+        JS: styles.yellow,
+        RCT: styles.blue,
+        NODE: styles.green
+    };
+
+    const fetchProjectData = async () => {
+        try {
+            const res = await api.get(`/project/${id}`);
+            setProjectData(res.data);
+            setSelectedProject(res.data);
+        } catch (error) {
+            console.error('Error fetch project data', error);
+        }
+    };
 
     useEffect(() => {
         const updatePosition = () => {
@@ -39,8 +63,9 @@ const ProjectPage = () => {
         };
 
         updatePosition();
+        fetchProjectData()
     }, []);
-    
+
     const handleMouseDown = (e, id) => {
     if (!id || !positions[id]) return;
         setDragging(id);
@@ -69,7 +94,7 @@ const ProjectPage = () => {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.top}>
-                <h1>Novellum</h1>
+                <h1>{projectData?.name}</h1>
             </div>
             <div className={styles.content}>
                 <div 
@@ -78,7 +103,7 @@ const ProjectPage = () => {
                     style={{ 
                         left: positions.img1.x,
                         top: positions.img1.y,
-                        zIndex: index === 'img1' ? 900 : 'auto'
+                        zIndex: index === 'img1' ? 1 : 'auto'
                     }}
                     onMouseDown={() => setIndex('img1')}
                 >
@@ -103,7 +128,7 @@ const ProjectPage = () => {
                     style={{ 
                         left: positions.img2.x,
                         top: positions.img2.y,
-                        zIndex: index === 'img2' ? 900 : 'auto'
+                        zIndex: index === 'img2' ? 1 : 'auto'
                     }}
                     onMouseDown={() => setIndex('img2')}
                 >
@@ -118,30 +143,25 @@ const ProjectPage = () => {
                         <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
-                        <img src='/imgs/Screenshot 2025-10-20 at 16.53.44.png' alt=''/>
+                        <img src={`/${projectData.photos?.[0]}`} alt=''/>
                     </div>
                 </div>
                 <div className={styles.projectDesc}>
                     <p>
-                        This project is a full-stack web application designed to showcase 
-                        a complete workflow from frontend to backend. It demonstrates 
-                        responsive design, dynamic user interactions, and integration 
-                        with APIs and databases, highlighting both functionality and user 
-                        experience in a modern web environment.This project is a full-stack web application designed to showcase 
-                        a complete workflow from frontend to backend. It demonstrates 
-                        responsive design, dynamic user interactions, and integration 
-                        with APIs and databases, highlighting both functionality and user 
-                        experience in a modern web environment.
+                        {projectData?.description}
                     </p>
                     <div className={styles.language}>
-                        <p className={styles.yellow}>JS</p>
-                        <p className={styles.blue}>RCT</p>
-                        <p className={styles.green}>NODE</p>
+                        {projectData?.language_used?.map((lang, idx) =>
+                            <p key={idx} className={languageColors[lang.toUpperCase()]}>{lang}</p>
+                        )}
                     </div>
 
                     <div>
                         <div>
-                            <h3>Novellum LTD</h3>
+                            <h3>{projectData?.project_type}</h3>
+                        </div>
+                        <div>
+                            <h3>{projectData?.client_name}</h3>
                         </div>
                     </div>
                 </div>

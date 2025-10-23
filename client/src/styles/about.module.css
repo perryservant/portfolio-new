@@ -1,41 +1,9 @@
 .mainContainer {
     height: 100vh;
     width: 100%;
-    position: relative;
-}  
-
-.block {
-    width: 300px;
-    height: 600px;
-    margin-top: 60px;
-    background-color: white;
-    margin-left: 30px;
-}
-
-.marquee {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
-}
-
-.marqueeInner {
-  display: inline-flex; /* flex container for repeated text */
-  animation: scrollRight 10s linear infinite;
-}
-
-.marqueeInner span {
-  padding-right: 2rem; /* spacing between repeats */
-}
-
-/* animation moves the inner container continuously */
-@keyframes scrollRight {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%); /* moves half-width, adjust for number of repeats */
-  }
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    padding: 0 30px;
 }
 
 .top {

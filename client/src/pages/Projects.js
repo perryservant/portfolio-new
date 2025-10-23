@@ -1,8 +1,25 @@
+import { useEffect, useState } from 'react';
+import api from '../api/Axios';
 
 import ProjectCard from '../components/ProjectCard';
 import styles from '../styles/projects.module.css';
 
 const Projects = () => {
+    const [projectsData, setProjectsData] = useState([]);
+
+    const fetchProjectsData = async () => {
+        try {
+            const res = await api.get('/projects');
+            setProjectsData(res.data);
+        } catch (error) {
+            console.error('Error fetching projects data', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProjectsData();
+    }, []);
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.top}>
@@ -24,7 +41,9 @@ const Projects = () => {
                 </div>
             </div>
             <div className={styles.projectContainer}>
-                <ProjectCard/>
+                {Array.isArray(projectsData) && projectsData.map(project => 
+                    <ProjectCard project={project} key={project.id}/>
+                )}
             </div>
         </div>
     );

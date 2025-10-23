@@ -37,11 +37,11 @@ const Contact = () => {
 
                         <div className={styles.middleConsole}>
                             <p><span>01</span> enter name:</p>
-                            <p><span>02</span> > <input type='text' name='name'/></p>
+                            <p><span>02</span>  <input type='text' name='name'/></p>
                             <p><span>03</span> </p>
                             <p><span>04</span> </p>
                             <p><span>05</span> enter email:</p>
-                            <p><span>06</span> > <input type='email' name='email' /></p> 
+                            <p><span>06</span>  <input type='email' name='email' /></p> 
                             <p><span>07</span> </p>
                             <p><span>08</span> </p>
                             <p><span>09</span> select request:</p>

@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { ProjectProvider } from '../context/ProjectContext';
 
 import { PiStackLight } from "react-icons/pi";
 import styles from '../styles/root.module.css';
@@ -46,40 +47,43 @@ const Root = () => {
   }, []);
 
   return (
-    <div className={styles.rootContainer} >
-        <canvas
-            ref={canvasRef} className={styles.canva}
-        />
-        <div className={styles.box}>
-              <div className={styles.boxTop}>
-                  <div className={styles.boxTopLeft}>
-                      <p>Full-Stack Engineer</p>
-                  </div>
-                  <div className={styles.boxTopRight}>
-                      <PiStackLight className={styles.icon}/>
-                  </div>
-              </div>
-              <div className={styles.boxBottom}>
-                  <div className={styles.boxBottomLeft}>
-                      <div className={styles.certiDate}>
-                          <p>SEPT</p>
-                          <p>25</p>
-                      </div>
-                      
-                  </div>
-                  <div className={styles.boxBottomRight}>
-                      <img src='imgs/Full-Stack Engineer  Codecademy[1] copy.png.png' alt=''/>
-                      <p>880DD579-4</p>
-                  </div>
-              </div>
+    <ProjectProvider>
+        <div className={styles.rootContainer} >
+            <canvas
+                ref={canvasRef} className={styles.canva}
+            />
+            <div className={styles.box}>
+                <div className={styles.boxTop}>
+                    <div className={styles.boxTopLeft}>
+                        <p>Full-Stack Engineer</p>
+                    </div>
+                    <div className={styles.boxTopRight}>
+                        <PiStackLight className={styles.icon}/>
+                    </div>
+                </div>
+                <div className={styles.boxBottom}>
+                    <div className={styles.boxBottomLeft}>
+                        <div className={styles.certiDate}>
+                            <p>SEPT</p>
+                            <p>25</p>
+                        </div>
+                        
+                    </div>
+                    <div className={styles.boxBottomRight}>
+                        <img src='/imgs/Full-Stack Engineer  Codecademy[1] copy.png.png' alt=''/>
+                        <p>880DD579-4</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <NavProfile location={location}/>
+            </div>
+            <div>
+                <Outlet />
+            </div>
         </div>
-        <div>
-            <NavProfile location={location}/>
-        </div>
-        <div>
-            <Outlet />
-        </div>
-    </div>
+    </ProjectProvider>
+    
   );
 };
 
