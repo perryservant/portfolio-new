@@ -14,7 +14,16 @@ const NavProfile = ({ location }) => {
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const currentPath = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
+
+    const breadCrumbs = () => {
+        if (location.pathname === '/') {
+            return 'home'
+        } else if (location.pathname.startsWith('/projectpage')) {
+            return 'projectpage'
+        } else {
+            return location.pathname.replace('/', '')
+        }
+    };
 
     const updatePosition = () => {
         if (containerRef.current) {
@@ -83,7 +92,6 @@ const NavProfile = ({ location }) => {
                         <li role="menuitem"><NavLink to='/'>home</NavLink></li>
                         <li role="menuitem"><NavLink to='projects'>projects</NavLink></li>
                         <li role="menuitem"><NavLink to='contact'>contact</NavLink></li>
-                        <li role="menuitem"><NavLink to='about'>about</NavLink></li>
                     </ul>
                 </div>
                 
@@ -93,16 +101,16 @@ const NavProfile = ({ location }) => {
                 <p className={styles.menuText}>perry_servant \</p>
             </div>
             <div className={styles.language}>
-                <p className={styles.menuText}>{currentPath} \</p>
+                <p className={styles.menuText}>{breadCrumbs()} \</p>
             </div>
 
-            {currentPath.startsWith('projectpage') && (
+            {breadCrumbs() === 'projectpage' && (
                 <div className={styles.projectName}>
                     <p className={styles.menuText}>{selectedProject?.name} \</p>
                 </div>
             )}
 
-            {currentPath.startsWith('contact') && (
+            {breadCrumbs() === 'contact' && (
                 <div className={styles.hireMe}>
                     <p className={styles.menuText}>hire me \</p>
                 </div>

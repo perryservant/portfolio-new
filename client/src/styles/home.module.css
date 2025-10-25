@@ -1,42 +1,114 @@
 .mainContainer {
     height: 100vh;
     width: 100%;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }  
 
-.block {
-    width: 300px;
-    height: 600px;
+.top {
     margin-top: 60px;
-    background-color: white;
-    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    min-height: 0;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    width: 75%;
+}
+
+.t {
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* allow grid to stretch vertically */
+}
+
+.right p {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.right span {
+    font-weight: 400;
+}
+
+.middlex {
+    grid-column: 1/5;
+    grid-row: 2/3;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.bottomLine {
+    grid-column: 1/5;
+    border-bottom: 1.5px dashed black;
+}
+
+.infoGrid {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 30px 1fr 10px 30px; 
+    gap: 15px;
+    height: 100%;
+    min-height: 0;
+}
+
+.box {
+    height: 20px;
+    border-bottom: 1.5px dashed black;
+}
+
+.space {
+    width: 300px;
+    height: 700px;
 }
 
 .marquee {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+.time {
+    grid-column: 4/5;
+    display: flex;
+    justify-content: end;
 }
 
 .marqueeInner {
-  display: inline-flex; /* flex container for repeated text */
-  animation: scrollRight 10s linear infinite;
+    margin-top: 30px;
+    width: 100%;
+    display: inline-flex; 
+    animation: scrollRight 10s linear infinite;
 }
 
 .marqueeInner span {
-  padding-right: 2rem; /* spacing between repeats */
+    padding-right: 2rem;
 }
 
-/* animation moves the inner container continuously */
-@keyframes scrollRight {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%); /* moves half-width, adjust for number of repeats */
-  }
-}
+
 
 .top {
     grid-row: 1/2;
@@ -76,69 +148,3 @@
 
 /* Right Section */
 
-.right {
-    flex: 1;
-}
-
-.container {
-    height: 320px;
-    width: 280px;
-    border: 1px solid gainsboro;
-}
-
-.imgContainer {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-}
-
-.imgContainer img{
-    height: 250px;
-    width: 250px;
-    object-fit: contain;
-}
-
-.test {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.test img {
-    height: 155px;
-    width: 155px;
-    opacity: 0;
-    margin-bottom: 20px;
-}
-
-.test img:hover {
-    opacity: .6;
-}
-
-.label {
-    height: 20px;
-    width: fit-content;
-    background-color: rgba(0, 0, 0, 0.553);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(.8px);
-    margin-bottom: 1px;
-}
-
-.label p {
-    font-family: "Founders Grotesk";
-    font-weight: 200;
-    margin: 0;
-    color: white;
-    font-size: 11px;
-    padding: 0 5px;
-    text-transform: uppercase;
-}

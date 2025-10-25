@@ -25,9 +25,19 @@
     font-weight: 500;
 }
 
-.projectContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    height: auto;
+.projectsContainer {
+    position: relative; /* important: children are positioned relative to this */
+    width: 100%;
+    height: 100%;
+}
+
+.projectWrapper {
+    position: absolute; /* absolute relative to container */
+    cursor: grab;
+    user-select: none;
+    width: 670px;  /* smaller, manageable size */
+    height: 250px;
+}
+.projectWrapper:active {
+    cursor: grabbing;
 }

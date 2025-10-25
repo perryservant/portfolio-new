@@ -1,77 +1,275 @@
-.maincontainer {
-    height: 100%;
-    width: 100%;
-    background-color: white;
+.mainContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-top: 60px;
+    z-index: 1;
+}
+
+/* Box Section */
+
+.box {
+    height: 120px;
+    width: 300px;
+    border: 1px solid gainsboro;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    background-color: rgb(241, 241, 241);
+}
+
+.boxTop {
+    height: 40%;
+    border-bottom: 1px solid gainsboro;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+
+.boxTopLeft {
+    border-right: 1px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxTopRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.boxBottom {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+.boxBottomLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.certiDate {
+    rotate: -90deg;
+}
+
+.certiDate p {
+    margin: 0;
+}
+
+.boxBottomRight {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 1px solid gainsboro;
+}
+
+.boxBottomRight img {
+    height: 50px;
+}
+
+/* Block Section */
+
+.block {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: rgb(241, 241, 241);
+}
+
+.collapse {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+    cursor: pointer;
 }
 
 .profile {
-    display: grid;
-    grid-template-columns: 1px 2fr 1fr;
-    column-gap: 1px;
-    height: 100%;
+    display: flex;
+}
+
+.stamp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid gainsboro;
+    font-size: 25px;
+    color: rgb(190, 190, 190);
+}
+
+.exams {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.exams p {
+    margin: 0;
+    margin: 2px 5px;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+
+.name p {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.bottomBlock {
+    flex: 1;
+    height: 270px;
+}
+
+.bottomBlockTop {
+    display: flex;
+    height: 50%;
+    border-bottom: 1px solid gainsboro;
+}
+
+.bottomBlockTopLeft {
+    width: 50px;
+    border-right: 1px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    line-height: 17px;
+}
+
+.bottomBlockBottom {
+    flex: 1;
+    height: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.bottomBlockBottomRight {
+    width: 50px;
+    border-left: 1px solid gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentBoxBottom {
+    padding: 0 10px;
     width: 100%;
-}
-
-.dp {
-    display: grid;
-    grid-template-rows: 3fr 1fr;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(28, 28, 28);
-    grid-column: 3/4;
-}
-
-.dp p {
-    color: white;
-}
-
-.info {
-    background-color: rgb(28, 28, 28);
-    grid-column: 2/3;
-    overflow: scroll;
-}
-
-.left {
-    grid-column: 1/2;
-    background-color: rgb(28, 28, 28);
-}
-
-.experience {
-    width: 100%;
-    height: 1000px;
-    padding: 20px;
-}
-
-.experience p {
-    color: white;
-    font-size: 11px;
-}
-
-.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.contentBoxBottom p {
+    margin: 0;
+    margin: 2px 0;
+}
+
+.contentBoxBottom span {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.leftLabel {
+    rotate: -90deg;
+}
+
+.leftLabel p {
+    font-size: 13px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.container {
+    height: 170px;
+    width: 170px;
+    border-right: 1px solid gainsboro;
+}
+
+.imgContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    grid-row: 1/2;
+}
+
+.imgContainer img{
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
+.ctScan {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
 }
 
-.title {
-    margin-top: 30px;
+.ctScan img {
+    height: 95px;
+    width: 95px;
+    opacity: 0;
+    margin-bottom: 10px;
+    animation: flickerPause 2s infinite;
 }
 
-.pic {
+@keyframes flickerPause {
+    0%, 60%, 100% { opacity: 0; }
+    61%, 63%, 65% { opacity: 0.5; }
+    70%, 72%, 75% { opacity: 0.5; }
+}
+
+/* Accordion Settings */
+
+.accordionContentOpen {
     display: flex;
-    justify-content: center;
-    align-items: end;
-    height: 175px;
-    width: 165px;
-    background-color: white;
-    padding-bottom: 5px;
+    flex-direction: column;
+    flex: 1;
+    max-height: 800px;
+    overflow: hidden;
+    transition: max-height 2.5s ease, opacity 0.2s ease;
+    opacity: 1;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
 }
 
-.pic img {
-    height: 150px;
-    width: 150px;
+.accordionContentClosed {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    flex: 1;
+    opacity: 1;
+    transition: max-height 1.5s ease, border-bottom 3s ease;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-bottom: 0px solid gainsboro;
 }
