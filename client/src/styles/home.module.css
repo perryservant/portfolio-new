@@ -63,6 +63,12 @@
     border-bottom: 1.5px dashed black;
 }
 
+.bottomLineActive {
+    grid-column: 1/5;
+    border-bottom: 1.5px dashed rgb(154, 207, 41);
+    transition: border-bottom .4s ease;
+}
+
 .infoGrid {
     width: 80%;
     display: grid;
@@ -76,6 +82,17 @@
 .box {
     height: 20px;
     border-bottom: 1.5px dashed black;
+}
+
+.active {
+    height: 20px;
+    border-bottom: 1.5px dashed rgb(154, 207, 41);
+    transition: border-bottom .4s ease;
+}
+
+.active p {
+    color: rgb(154, 207, 41);
+    transition: color .4s ease;
 }
 
 .space {
@@ -147,4 +164,3 @@
 }
 
 /* Right Section */
-

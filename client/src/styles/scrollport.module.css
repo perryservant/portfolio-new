@@ -1,0 +1,210 @@
+.mainContainer {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+}
+
+/* Section */
+
+.contentContainer {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.contentContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.section {
+    height: 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "IBM Plex Mono", monospace;
+    text-align: center;
+}
+
+.sectionContact {
+    height: 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.title {
+    font-size: 4rem;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title.active {
+    animation: slideFadeIn 0.8s forwards;
+}
+
+@keyframes slideFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.word.active {
+    animation: wordFadeIn 0.5s forwards;
+}
+
+@keyframes wordFadeIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sectionContactH1 {
+    width: 100%;
+}
+
+.innerContent {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.section h1 {
+    font-size: 4rem;
+    margin: 0;
+    opacity: 0;
+}
+
+.section p {
+    margin-top: 10px;
+    max-width: 600px;
+    color: gray;
+}
+
+.indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.line {
+    width: 65%;
+    height: 5px;
+    border-top: 1px solid gainsboro;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.line:hover,
+.line.active {
+    width: 100%;
+    border-top: 1px solid black;
+}
+
+/* Input Section */
+
+input:focus {
+    outline: none;
+}
+
+.customCheckbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+    border: 1px solid black;
+    background-color: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.customCheckbox:checked::after {
+    content: "✔";
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -57%);
+    font-size: 14px;
+}
+
+.contactForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 600px;
+    height: auto;
+}
+
+.contactForm input[type="text"],
+.contactForm input[type="email"] {
+    height: 30px;
+    width: 250px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 40px;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.contactForm button {
+    width: 200px;
+    height: 40px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: "IBM Plex Mono", monospace;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonBox {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.contactForm button:hover {
+    background-color: #333;
+}
+

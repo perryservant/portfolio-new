@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/home.module.css';
-import Projects from './Projects';
+import ScrollPort from '../components/ScrollPort';
+import Clock from '../components/Clock';
 
 
 const Home = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
     const marqueeRef = useRef(null);
-    const [panel, setPanel] = useState('projects')
     const [repeats, setRepeats] = useState(6);
     const text = "Your looping text goes here — ";
 
@@ -29,13 +30,6 @@ const Home = () => {
         setRepeats(neededRepeats);
     }, []);
 
-    const panelToggle = (panel) => {
-        if (panel === 'projects') {
-            return <Projects/>
-        }
-
-    }
-
     return (
         <div className={styles.mainContainer}>
             <div className={styles.top}>
@@ -45,25 +39,24 @@ const Home = () => {
                     
                     <div className={styles.t}>
                         <div className={styles.infoGrid}>
-                            <div className={styles.box}>
-                                <p>primary</p>
+                            <div className={activeIndex === 0 ? styles.active : styles.box}>
+                                <p>full-satch Developer</p>
                             </div>
-                            <div className={styles.box}>
-                                <p>go deeper</p>
+                            <div className={activeIndex === 1 ? styles.active : styles.box}>
+                                <p>core competencies</p>
                             </div>
-                            <div className={styles.box}>
-                                <p>secure</p>
+                            <div className={activeIndex === 2 ? styles.active : styles.box}>
+                                <p>Highlighted Projects</p>
                             </div>
-                            <div className={styles.box}>
-                                <p>innovate</p>
+                            <div className={activeIndex === 3 ? styles.active : styles.box}>
+                                <p>Professional experience</p>
                             </div>
 
                             <div className={styles.middlex}>
-                                <h1>Let's build you next porject<br/>together</h1>
-                                
+                                <ScrollPort activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
                             </div>
 
-                            <div className={styles.bottomLine}>
+                            <div className={activeIndex === 4 ? styles.bottomLineActive : styles.bottomLine}>
                             </div>
                             <div>
                                 <p>© copyright 2025 perry servant<br/><span>all right reserved</span></p>
@@ -72,7 +65,7 @@ const Home = () => {
                                 <p>///////////////////////////////////////////////////</p>
                             </div>
                             <div className={styles.time}>
-                                <p>19:09.23</p>
+                                <Clock/>
                             </div>
                         </div>
                     

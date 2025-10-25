@@ -8,12 +8,18 @@ import { GoGrabber } from "react-icons/go";
 const NavProfile = ({ location }) => {
     const { selectedProject } = useProject();
 
+    const [isCollapsed, setIsCollapsed] = useState(true);
+
     const containerRef = useRef(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [menuOpen, setMenuOpen] = useState(false);
 
+
+    const handleCollapseToggle = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
     const breadCrumbs = () => {
         if (location.pathname === '/') {
@@ -75,28 +81,26 @@ const NavProfile = ({ location }) => {
                 <GoGrabber className={styles.grabIcon}/>
                 <span className={styles.tooltipText}>GRAB</span>
             </div>
-            <div className={styles.menuWrapper}>
-                <div className={styles.menuSection} onClick={() => setMenuOpen(!menuOpen)}>
-                    <div className={styles.menuHeader}>
-                        <p className={styles.menuText}>cd:</p>
-                        <p className={styles.menuTextMiddle}>\ novellum \</p>
-                    </div>
+            
+            <div className={styles.menuSection} onClick={handleCollapseToggle}>
+                <div className={styles.menuHeader}>
+                    <p className={styles.menuText}>cd:</p>
+                    <p className={styles.menuTextMiddle}>\ novellum \</p>
                 </div>
-                
-                <div 
-                    className={`${styles.menuPanel} ${menuOpen ? styles.menuPanelOpen : ''}`}
-                    aria-hidden={!menuOpen}
-                    role="menu"
-                >
-                    <ul className={styles.menuList}>
-                        <li role="menuitem"><NavLink to='/'>home</NavLink></li>
-                        <li role="menuitem"><NavLink to='projects'>projects</NavLink></li>
-                        <li role="menuitem"><NavLink to='contact'>contact</NavLink></li>
-                    </ul>
-                </div>
-                
             </div>
                 
+            <div className={styles.menuWrapper}>
+                <div className={!isCollapsed ? styles.accordionContentOpen : styles.accordionContentClosed}>
+                    <div className={styles.innerMenu}>
+                        <ul className={styles.menuList}>
+                            <li><NavLink className={styles.linkStyle}  onClick={handleCollapseToggle} to='/'>\ home</NavLink></li>
+                            <li><NavLink className={styles.linkStyle} onClick={handleCollapseToggle} to='projects'>\ projects</NavLink></li>
+                            <li><NavLink className={styles.linkStyle} onClick={handleCollapseToggle} to='contact'>\ contact</NavLink></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             <div className={styles.portfolio}>
                 <p className={styles.menuText}>perry_servant \</p>
             </div>
