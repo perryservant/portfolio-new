@@ -44,7 +44,7 @@
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 3rem;
     margin: 0;
     opacity: 0;
     transform: translateY(20px);
@@ -208,3 +208,25 @@ input:focus {
     background-color: #333;
 }
 
+@media (max-width: 430px) {
+    .mainContainer {
+        display: flex;
+    }
+    
+    .section h1 {
+        font-size: 50px;
+    }
+
+    .indicator {
+        display: none;
+    }
+
+    .contactForm {
+        width: 100%;
+    }
+
+    .contactForm input[type="text"],
+    .contactForm input[type="email"] {
+        margin-bottom: 20px;
+    }
+}

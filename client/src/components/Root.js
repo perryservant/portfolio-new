@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProjectProvider } from '../context/ProjectContext';
 
 import styles from '../styles/root.module.css';
@@ -7,64 +7,90 @@ import NavProfile from "./NavProfile";
 import Profile from "./Profile";
 
 const Root = () => {
-  const canvasRef = useRef(null);
-  const location = useLocation();
+    const canvasRef = useRef(null);
+    const location = useLocation();
+    const [isCollapsedA, setIsCollapsedA] = useState(() => window.innerWidth < 820);
+    const [isCollapsedB, setIsCollapsedB] = useState(true);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 820) {
+                setIsCollapsedA(true);
+            } else {
+                setIsCollapsedA(false);
+            }
+        };
+        handleResize();
 
-    const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
+        window.addEventListener("resize", handleResize);
 
-    const generateNoise = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const imageData = ctx.createImageData(canvas.width, canvas.height);
-        const buffer = new Uint32Array(imageData.data.buffer);
-        for (let i = 0; i < buffer.length; i++) {
-            buffer[i] = ((255 * Math.random()) | 0) << 24;
-        }
-        ctx.putImageData(imageData, 0, 0);
-    };
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
-    const loop = () => {
-        generateNoise();
-        animationFrameId = requestAnimationFrame(loop);
-    };
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        let animationFrameId;
 
-    resize();
-    loop();
-    window.addEventListener("resize", resize);
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
 
-    return () => {
-        cancelAnimationFrame(animationFrameId);
-        window.removeEventListener("resize", resize);
-    };
+        const generateNoise = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const imageData = ctx.createImageData(canvas.width, canvas.height);
+            const buffer = new Uint32Array(imageData.data.buffer);
+            for (let i = 0; i < buffer.length; i++) {
+                buffer[i] = ((255 * Math.random()) | 0) << 24;
+            }
+            ctx.putImageData(imageData, 0, 0);
+        };
 
-  }, []);
+        const loop = () => {
+            generateNoise();
+            animationFrameId = requestAnimationFrame(loop);
+        };
 
-  return (
-    <ProjectProvider>
-        <div className={styles.rootContainer} >
-            <canvas
-                ref={canvasRef} className={styles.canva}
-            />
-            <div>
-                <Profile/>
+        resize();
+        loop();
+        window.addEventListener("resize", resize);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener("resize", resize);
+        };
+
+    }, []);
+
+    return (
+        <ProjectProvider>
+            <div className={styles.rootContainer} >
+                <canvas
+                    ref={canvasRef} className={styles.canva}
+                />
+                <div>
+                    <Profile 
+                        isCollapsedA={isCollapsedA}
+                        setIsCollapsedA={setIsCollapsedA}
+                    />
+                </div>
+                <div>
+                    <NavProfile 
+                        location={location}
+                        isCollapsedA={isCollapsedA}
+                        setIsCollapsedA={setIsCollapsedA}
+                        isCollapsedB={isCollapsedB} 
+                        setIsCollapsedB={setIsCollapsedB}
+                    />
+                </div>
+                <div>
+                    <Outlet />
+                </div>
             </div>
-            <div>
-                <NavProfile location={location}/>
-            </div>
-            <div>
-                <Outlet />
-            </div>
-        </div>
-    </ProjectProvider>
-    
-  );
+        </ProjectProvider>
+        
+    );
 };
 
 export default Root;

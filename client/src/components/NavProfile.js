@@ -5,20 +5,18 @@ import { useProject } from '../context/ProjectContext';
 import styles from '../styles/navprofile.module.css';
 import { GoGrabber } from "react-icons/go";
 
-const NavProfile = ({ location }) => {
+const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, setIsCollapsedA }) => {
     const { selectedProject } = useProject();
 
-    const [isCollapsed, setIsCollapsed] = useState(true);
 
     const containerRef = useRef(null);
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
-    const [menuOpen, setMenuOpen] = useState(false);
 
 
     const handleCollapseToggle = () => {
-        setIsCollapsed(!isCollapsed);
+        setIsCollapsedB(!isCollapsedB);
     };
 
     const breadCrumbs = () => {
@@ -90,11 +88,17 @@ const NavProfile = ({ location }) => {
             </div>
                 
             <div className={styles.menuWrapper}>
-                <div className={!isCollapsed ? styles.accordionContentOpen : styles.accordionContentClosed}>
+                <div className={!isCollapsedB ? styles.accordionContentOpen : styles.accordionContentClosed}>
                     <div className={styles.innerMenu}>
                         <ul className={styles.menuList}>
-                            <li><NavLink className={styles.linkStyle}  onClick={handleCollapseToggle} to='/'>\ home</NavLink></li>
-                            <li><NavLink className={styles.linkStyle} onClick={handleCollapseToggle} to='projects'>\ projects</NavLink></li>
+                            <li><NavLink className={styles.linkStyle}  onClick={() => {
+                                handleCollapseToggle();
+                                if (isCollapsedA) setIsCollapsedA(false);
+                            }} to='/'>\ home</NavLink></li>
+                            <li><NavLink className={styles.linkStyle} onClick={() => {
+                                handleCollapseToggle();
+                                if (!isCollapsedA) setIsCollapsedA(true);
+                            }} to='projects'>\ projects</NavLink></li>
                             <li><NavLink className={styles.linkStyle} onClick={handleCollapseToggle} to='contact'>\ contact</NavLink></li>
                         </ul>
                     </div>

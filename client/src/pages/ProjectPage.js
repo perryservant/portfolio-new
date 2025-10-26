@@ -6,6 +6,7 @@ import styles from '../styles/projectpage.module.css';
 
 import { GoGrabber } from "react-icons/go";
 import api from '../api/Axios';
+import Clock from '../components/Clock';
 
 const ProjectPage = () => {
     const { id } = useParams();
@@ -94,9 +95,20 @@ const ProjectPage = () => {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.top}>
-                <h1>{projectData?.name}</h1>
+                <div className={styles.box}>
+                    <p>{projectData.name}</p>
+                </div>
+                <div className={styles.box}>
+                    <p>{projectData.name}</p>
+                </div>
+                <div className={styles.box}>
+                    <p>{projectData.name}</p>
+                </div>
+                <div className={styles.box}>
+                    <p>{projectData.name}</p>
+                </div>
             </div>
-            <div className={styles.content}>
+            <div className={styles.middle}>
                 <div 
                     ref={containerRef1}
                     className={styles.projectImg}
@@ -114,7 +126,7 @@ const ProjectPage = () => {
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseUp}
                     >
-                        <p>project img [1]</p>
+                        <GoGrabber className={styles.rotate}/>
                         <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
@@ -139,7 +151,7 @@ const ProjectPage = () => {
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseUp}
                     >
-                        <p>project img [0]</p>
+                        <GoGrabber className={styles.rotate}/>
                         <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
@@ -163,6 +175,22 @@ const ProjectPage = () => {
                         <div>
                             <h3>{projectData?.client_name}</h3>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.bottom}>
+                <div className={styles.bottomLine}></div>
+                <div className={styles.footerContainer}>
+                    <div className={styles.copyright}>
+                        <p>© copyright 2025 perry servant<br/><span>all right reserved</span></p>
+                    </div>
+                    <div className={styles.spacer}>
+                        <p>
+                            ///////////////////////////////////////////////////////////////
+                        </p>
+                    </div>
+                    <div className={styles.clock}>
+                        <Clock/>
                     </div>
                 </div>
             </div>

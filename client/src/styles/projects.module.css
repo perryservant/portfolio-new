@@ -1,43 +1,163 @@
 .mainContainer {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     padding: 0 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .top {
-    height: 300px;
-    display: flex;
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 15px;
 }
 
-.left {
-    width: 50%;
+.box {
+    margin-top: 10px;
+    height: 30px;
+    border-bottom: 1.5px dashed black;
 }
 
-.right {
+.box p {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.middle {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.text p {
-    font-family: "Barlow", sans-serif;
+.bottom {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom p {
+    font-size: 11px;
+    text-transform: uppercase;
     font-weight: 500;
 }
 
+.bottom span {
+    font-weight: 400;
+}
+
+.bottomLine {
+    border-bottom: 1.5px dashed black;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+}
+
+.spacer {
+    display: flex;
+    align-items: center;
+}
+
+.clock {
+    grid-column: 4/5;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.footerContainer {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.intro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.intro p {
+    width: 500px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+}
+
+.topP {
+    font-weight: 600;
+}
+
 .projectsContainer {
-    position: relative; /* important: children are positioned relative to this */
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
 .projectWrapper {
-    position: absolute; /* absolute relative to container */
+    position: absolute;
     cursor: grab;
     user-select: none;
-    width: 670px;  /* smaller, manageable size */
+    width: 670px;
     height: 250px;
 }
 .projectWrapper:active {
     cursor: grabbing;
+}
+
+@media (max-width: 820px) {
+    .mainContainer {
+        height: 100vh;
+    }
+
+    .top {
+        margin-top: 170px;
+    }
+
+    .middle {
+        overflow: scroll;
+    }
+
+    .top {
+        height: 50px;
+    }
+
+    .copyright {
+        grid-column: 1/3;
+    }
+
+    .intro {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .intro p {
+        width: 100%;
+    }
+
+    .projectWrapper {
+        display: flex;
+        flex-direction: column;
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .bottom {
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 430px) {
+    .copyright {
+        grid-column: 1/4;
+    }
+    
+    .spacer {
+        display: none;
+    }
 }

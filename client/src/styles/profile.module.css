@@ -268,8 +268,37 @@
     overflow: hidden;
     flex: 1;
     opacity: 1;
-    transition: max-height 1.5s ease, border-bottom 3s ease;
+    transition: max-height 1.5s ease, border-bottom 3s ease,;
     border-right: 1px solid gainsboro;
     border-left: 1px solid gainsboro;
     border-bottom: 0px solid gainsboro;
+}
+
+
+
+@media (max-width: 820px) {
+    .mainContainer {
+        position: absolute;
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        padding: 0 10px;
+        margin-left: 0;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .block {
+        width: 100%;
+    }
+
+    .bottomBlockTop {
+        height: 150px;
+    }
+
+    .bottomBlockBottom {
+        height: 150px;
+    }
 }

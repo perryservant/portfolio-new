@@ -1,14 +1,11 @@
-import { useState } from "react";
-
 import { PiStackLight } from "react-icons/pi";
 import { BiCertification } from "react-icons/bi";
 import styles from '../styles/profile.module.css';
 
-const Profile = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+const Profile = ({ isCollapsedA, setIsCollapsedA}) => {
 
     const handleCollapseToggle = () => {
-        setIsCollapsed(!isCollapsed);
+        setIsCollapsedA(!isCollapsedA);
     };
     
     return (
@@ -38,11 +35,11 @@ const Profile = () => {
             </div>
             <div className={styles.block}>
                     <div className={styles.collapse} onClick={handleCollapseToggle}>
-                        <p>{isCollapsed ? 'v' : '^'}</p>
-                        <p>{isCollapsed ? 'expand' : 'collapse'}</p>
-                        <p>{isCollapsed ? 'v' : '^'}</p>
+                        <p>{isCollapsedA ? 'v' : '^'}</p>
+                        <p>{isCollapsedA ? 'expand' : 'collapse'}</p>
+                        <p>{isCollapsedA ? 'v' : '^'}</p>
                     </div>
-                    <div className={!isCollapsed ? styles.accordionContentOpen : styles.accordionContentClosed}>
+                    <div className={!isCollapsedA ? styles.accordionContentOpen : styles.accordionContentClosed}>
                         <div className={styles.profile}>
                             <div className={styles.container}>
                                 <div className={styles.imgContainer}>
