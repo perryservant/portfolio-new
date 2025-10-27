@@ -2,9 +2,52 @@ import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/scrollport.module.css';
 import AnimatedParagraph from '../components/AnimatedParagraph';
 
+import api from '../api/Axios';
+
 const ScrollPort = ({ activeIndex, setActiveIndex }) => {
     const sectionRef = useRef([]);
     const containerRef = useRef(null);
+    const [formMsg, setFormMsg] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        request: []
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await api.post('/contact/submit', formData);
+            const data = res.data;
+            setFormMsg(data.message);
+            setIsSubmitted(true);
+            setFormData({ name: '', email: '', request: [] })
+        } catch (error) {
+            console.error('Failed to submit form', error);
+            alert('Failed to submit form');
+        }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleCheckboxChange = (e) => {
+        const { value, checked} = e.target;
+
+        setFormData((prev) => {
+            const updatedRequest = checked
+                ? [...prev.request, value]
+                : prev.request.filter((item) => item !== value);
+            return { ...prev, request: updatedRequest }
+        });
+    };
 
     const sections = [
         {
@@ -20,60 +63,72 @@ const ScrollPort = ({ activeIndex, setActiveIndex }) => {
             content: "Developed full-stack applications including e-commerce platforms, real-time dashboards, and portfolio management tools. Focused on responsive design, performance optimization, and integrating secure authentication and data management systems."
         },
         {
-            title: "Professional Experience",
-            content: "Worked in collaborative environments contributing to both frontend and backend solutions. Delivered production-ready applications, participated in code reviews, and implemented best practices to ensure high-quality, scalable software solutions."
+            title: "Skills & Expertise",
+            content: "As a full-stack engineer in training, I have developed strong skills in JavaScript, React, Node.js, and PostgreSQL. I focus on writing clean, maintainable code, understanding modern development practices, and continuously improving my technical abilities through personal projects and hands-on learning."
         },
         {
             title: "Contact me",
-            content: (
-                <form className={styles.contactForm}>
-                    <input
-                        type='text'
-                        name='name'
-                        placeholder='Enter your name'
-                    />
-                    <input
-                        type='email'
-                        name='email'
-                        placeholder='Enter your email'
-                    />
-                    <div className={styles.checkbox}>
-                            
-                        <label className={styles.checkboxLabel}>
-                            <input
-                                type='checkbox'
-                                name='request'
-                                value='Demo request'
-                                className={styles.customCheckbox}
-                            />
-                            Demo request
-                        </label>
-                            
-                        <label className={styles.checkboxLabel}>
-                            <input
-                                type='checkbox'
-                                name='request'
-                                value='Come work for us'
-                                className={styles.customCheckbox}
-                            />
-                            Work for us
-                        </label>
+            content: (!isSubmitted ? (
+                    <form onSubmit={handleSubmit} className={styles.contactForm}>
+                        <input
+                            type='text'
+                            name='name'
+                            placeholder='Enter your name'
+                            value={formData.name}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type='email'
+                            name='email'
+                            placeholder='Enter your email'
+                            value={formData.email}
+                            onChange={handleInputChange}
+                        />
+                        <div className={styles.checkbox}>
+                                
+                            <label className={styles.checkboxLabel}>
+                                <input
+                                    type='checkbox'
+                                    name='request'
+                                    value='Demo request'
+                                    className={styles.customCheckbox}
+                                    checked={formData.request.includes('Demo request')}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Demo request
+                            </label>
+                                
+                            <label className={styles.checkboxLabel}>
+                                <input
+                                    type='checkbox'
+                                    name='request'
+                                    value='Come work for us'
+                                    className={styles.customCheckbox}
+                                    checked={formData.request.includes('Come work for us')}
+                                    onChange={handleCheckboxChange}
+                                />
+                                Work for us
+                            </label>
 
-                        <label className={styles.checkboxLabel}>
-                            <input
-                                type='checkbox'
-                                name='request'
-                                value='Project request'
-                                className={styles.customCheckbox}
-                            />
-                            I have a project idea
-                        </label>
-                    </div>
-                    <div className={styles.buttonBox}>
-                        <button type='submit'>Submit</button>
-                    </div>
-                    
-                </form>
+                            <label className={styles.checkboxLabel}>
+                                <input
+                                    type='checkbox'
+                                    name='request'
+                                    value='Project request'
+                                    className={styles.customCheckbox}
+                                    checked={formData.request.includes('Project request')}
+                                    onChange={handleCheckboxChange}
+                                />
+                                I have a project idea
+                            </label>
+                        </div>
+                        <div className={styles.buttonBox}>
+                            <button type='submit'>Submit</button>
+                        </div>
+                    </form>
+                ) : (
+                    <p>{formMsg}</p>
+                )
             )
         }
     ];

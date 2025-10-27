@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from '../styles/projectcard.module.css';
 import { GoGrabber } from "react-icons/go";
 
@@ -22,8 +22,8 @@ const ProjectCard = ({ project }) => {
                 <GoGrabber className={styles.rotate}/>
                 <span className={styles.tooltipText}>GRAB</span>
             </div>
-            <div className={styles.imgContainer} onClick={() => goToProject(project.id)}>
-                <img src={`/${project.photos?.[0]}`} alt='screen shot of project'/>
+            <div className={styles.imgContainer}>
+                <Link to={`/projectpage/${project.id}`}><img src={`/${project.photos?.[0]}`} alt='screen shot of project'/></Link>
             </div>
             <div className={styles.projectInfo}>
                 <p className={styles.name}>{project.name}</p>

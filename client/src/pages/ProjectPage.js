@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 
 import styles from '../styles/projectpage.module.css';
@@ -13,18 +13,15 @@ const ProjectPage = () => {
     const [projectData, setProjectData] = useState({});
     const { setSelectedProject } = useProject();
 
+    const [pos, setPos] = useState({ img1: {x: 0, y: 0}, img2: {x: 0, y: 0} });
+    const [targetPos, setTargetPos] = useState({ img1: {x: 0, y: 0}, img2: {x: 0, y: 0} });
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+
     const containerRef1 = useRef(null);
     const containerRef2 = useRef(null);
     const [dragging, setDragging] = useState(null);
     const [index, setIndex] = useState('img2');
-    const [positions, setPositions] = useState({
-        img1: { x: 0, y: 0 },
-        img2: { x: 0, y: 0 },
-    });
-    const [offsets, setOffsets] = useState({
-        img1: { x: 0, y: 0 },
-        img2: { x: 0, y: 0 },
-    });
+    
 
     const languageColors = {
         JS: styles.yellow,
@@ -48,15 +45,18 @@ const ProjectPage = () => {
                 const rect1 = containerRef1.current.getBoundingClientRect();
                 const rect2 = containerRef2.current.getBoundingClientRect();
 
-                
                 const centerX1 = window.innerWidth / 3.4 - rect1.width / 2;
-                const centerY1 = window.innerHeight / 2.1 - rect1.height / 2; 
+                const centerY1 = window.innerHeight / 2.1 - rect1.height / 2;
 
-                
                 const centerX2 = window.innerWidth / 1.5 - rect2.width / 2;
                 const centerY2 = window.innerHeight / 1.5 - rect2.height / 2;
 
-                setPositions({
+                setPos({
+                    img1: { x: centerX1, y: centerY1 },
+                    img2: { x: centerX2, y: centerY2 },
+                });
+
+                setTargetPos({
                     img1: { x: centerX1, y: centerY1 },
                     img2: { x: centerX2, y: centerY2 },
                 });
@@ -64,33 +64,54 @@ const ProjectPage = () => {
         };
 
         updatePosition();
-        fetchProjectData()
+        fetchProjectData();
     }, []);
 
     const handleMouseDown = (e, id) => {
-    if (!id || !positions[id]) return;
         setDragging(id);
-        setOffsets({
-            ...offsets,
-            [id]: {
-                x: e.clientX - positions[id].x,
-                y: e.clientY - positions[id].y,
-            },
+        setOffset({
+            x: e.clientX - pos[id].x,
+            y: e.clientY - pos[id].y
         });
     };
 
-    const handleMouseMove = (e) => {
-        if (!dragging) return;  
-            setPositions({
-                ...positions,
-                [dragging]: {
-                x: e.clientX - offsets[dragging].x,
-                y: e.clientY - offsets[dragging].y,
-            },
-        });
-    };
+    useEffect(() => {
+        const handleMouseMove = e => {
+            if (!dragging) return;
+            const newX = e.clientX - offset.x;
+            const newY = e.clientY - offset.y;
+            setTargetPos(prev => ({ ...prev, [dragging]: { x: newX, y: newY } }));
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, [dragging, offset]);
 
-    const handleMouseUp = () => setDragging(null);
+    useEffect(() => {
+        const handleMouseUp = () => setDragging(null);
+        window.addEventListener('mouseup', handleMouseUp);
+        return () => window.removeEventListener('mouseup', handleMouseUp);
+    }, []);
+
+    useEffect(() => {
+        let animationFrame;
+        const animate = () => {
+            setPos(prev => {
+            const updated = { ...prev };
+            ['img1', 'img2'].forEach(id => {
+                const target = targetPos[id];
+                const current = prev[id] || { x: target.x, y: target.y };
+                updated[id] = {
+                x: current.x + (target.x - current.x) * 0.2,
+                y: current.y + (target.y - current.y) * 0.2
+                };
+            });
+            return updated;
+            });
+            animationFrame = requestAnimationFrame(animate);
+        };
+        animationFrame = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationFrame);
+    }, [targetPos]);
 
     return (
         <div className={styles.mainContainer}>
@@ -113,8 +134,8 @@ const ProjectPage = () => {
                     ref={containerRef1}
                     className={styles.projectImg}
                     style={{ 
-                        left: positions.img1.x,
-                        top: positions.img1.y,
+                        left: pos.img1.x,
+                        top: pos.img1.y,
                         zIndex: index === 'img1' ? 1 : 'auto'
                     }}
                     onMouseDown={() => setIndex('img1')}
@@ -122,9 +143,7 @@ const ProjectPage = () => {
                     <div 
                         className={styles.label}
                         onMouseDown={(e) => handleMouseDown(e, 'img1')}
-                        onMouseMove={handleMouseMove}
-                        onMouseUp={handleMouseUp}
-                        onMouseLeave={handleMouseUp}
+                        
                     >
                         <GoGrabber className={styles.rotate}/>
                         <span className={styles.tooltipText}>GRAB</span>
@@ -138,8 +157,8 @@ const ProjectPage = () => {
                     ref={containerRef2}
                     className={styles.projectImg}
                     style={{ 
-                        left: positions.img2.x,
-                        top: positions.img2.y,
+                        left: pos.img2.x,
+                        top: pos.img2.y,
                         zIndex: index === 'img2' ? 1 : 'auto'
                     }}
                     onMouseDown={() => setIndex('img2')}
@@ -147,9 +166,7 @@ const ProjectPage = () => {
                     <div 
                         className={styles.label}
                         onMouseDown={(e) => handleMouseDown(e, 'img2')}
-                        onMouseMove={handleMouseMove}
-                        onMouseUp={handleMouseUp}
-                        onMouseLeave={handleMouseUp}
+                       
                     >
                         <GoGrabber className={styles.rotate}/>
                         <span className={styles.tooltipText}>GRAB</span>
@@ -159,7 +176,8 @@ const ProjectPage = () => {
                     </div>
                 </div>
                 <div className={styles.projectDesc}>
-                    <p>
+                    <p><Link className={styles.back} to='/projects'>BACK</Link></p>
+                    <p className={styles.desc}>
                         {projectData?.description}
                     </p>
                     <div className={styles.language}>

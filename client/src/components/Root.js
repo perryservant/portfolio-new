@@ -5,12 +5,20 @@ import { ProjectProvider } from '../context/ProjectContext';
 import styles from '../styles/root.module.css';
 import NavProfile from "./NavProfile";
 import Profile from "./Profile";
+import LoadingBar from "./LoadingBar";
 
 const Root = () => {
     const canvasRef = useRef(null);
     const location = useLocation();
+    const [fade, setFade] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(true);
     const [isCollapsedA, setIsCollapsedA] = useState(() => window.innerWidth < 820);
     const [isCollapsedB, setIsCollapsedB] = useState(true);
+
+    useEffect(() => {
+        setFade(true);
+    }, [location]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -69,6 +77,9 @@ const Root = () => {
                 <canvas
                     ref={canvasRef} className={styles.canva}
                 />
+                {isLoading && (
+                    <LoadingBar onComplete={() => setIsLoading(false)}/>
+                )}
                 <div>
                     <Profile 
                         isCollapsedA={isCollapsedA}
@@ -84,8 +95,8 @@ const Root = () => {
                         setIsCollapsedB={setIsCollapsedB}
                     />
                 </div>
-                <div>
-                    <Outlet />
+                <div >
+                    <Outlet context={{ isLoaded: !isLoading }}/>
                 </div>
             </div>
         </ProjectProvider>

@@ -10,6 +10,17 @@ const Projects = () => {
     const [positions, setPositions] = useState({});
     const [dragging, setDragging] = useState(null);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [pos, setPos] = useState({});
+    const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
+    
+    const handleMouseDown = (e, id) => {
+        setDragging(id);
+        setOffset({
+            x: e.clientX - pos[id]?.x ?? 0,
+            y: e.clientY - pos[id]?.y ?? 0
+        });
+    };
+
 
     const fetchProjectsData = async () => {
         try {
@@ -17,20 +28,26 @@ const Projects = () => {
             const data = res.data;
 
             const newPositions = {};
-            data.forEach((p, index) => {
-                const baseX = 170 + (index % 4) * 520; 
-                const baseY = 10 + Math.floor(index / 1) * 140; 
-                const offsetX = (Math.random() - 0.5) * 20; 
-                const offsetY = (Math.random() - 0.5) * 40;
+            const targetPositionsInit = {};
 
-                newPositions[p.id] = {
-                    x: baseX + offsetX,
-                    y: baseY + offsetY,
-                };
+            data.forEach((p, index) => {
+                const fixedPositions = [
+                    { x: 100, y: 120 },
+                    { x: 650, y: 320 },
+                    { x: 100, y: 180 },
+                    { x: 750, y: 480 },
+                ];
+
+                const position = fixedPositions[index] || { x: 100, y: 120 };
+
+                newPositions[p.id] = { x: position.x, y: position.y };
+                targetPositionsInit[p.id] = { x: position.x, y: position.y };
             });
 
             setProjects(data);
             setPositions(newPositions);
+            setPos(newPositions);
+            setTargetPos(newPositions);
         } catch (error) {
             console.error("Error fetching projects:", error);
         }
@@ -40,14 +57,43 @@ const Projects = () => {
         fetchProjectsData();
     }, []);
 
-    const handleMouseDown = (e, id) => {
-        e.preventDefault();
-        setDragging(id);
-        setOffset({
-            x: e.clientX - positions[id].x,
-            y: e.clientY - positions[id].y,
-        });
-    };
+    useEffect(() => {
+        const handleGlobalMouseMove = e => {
+            if (!dragging) return;
+            const newX = e.clientX - offset.x;
+            const newY = e.clientY - offset.y;
+            setTargetPos(prev => ({ ...prev, [dragging]: { x: newX, y: newY } }));
+        };
+        window.addEventListener('mousemove', handleGlobalMouseMove);
+        return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+    }, [dragging, offset]);
+
+    useEffect(() => {
+        const handleGlobalMouseUp = () => setDragging(null);
+        window.addEventListener('mouseup', handleGlobalMouseUp);
+        return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
+    }, []);
+
+    useEffect(() => {
+        let animationFrame;
+        const followCursor = () => {
+            setPos(prev => {
+                const updated = { ...prev };
+                Object.keys(targetPos).forEach(id => {
+                    const target = targetPos[id];
+                    const current = prev[id] || { x: target.x, y: target.y };
+                    updated[id] = {
+                    x: current.x + (target.x - current.x) * 0.2,
+                    y: current.y + (target.y - current.y) * 0.2
+                    };
+                });
+                return updated;
+            });
+            animationFrame = requestAnimationFrame(followCursor);
+        };
+        animationFrame = requestAnimationFrame(followCursor);
+        return () => cancelAnimationFrame(animationFrame);
+    }, [targetPos]);
 
     const handleMouseMove = (e) => {
         if (!dragging) return;
@@ -60,13 +106,12 @@ const Projects = () => {
         let newX = e.clientX - offset.x;
         let newY = e.clientY - offset.y;
 
-        // Clamp values
         newX = Math.max(0, Math.min(newX, containerWidth - cardWidth));
         newY = Math.max(0, Math.min(newY, containerHeight - cardHeight));
 
-        setPositions((prev) => ({
+        setTargetPos(prev => ({
             ...prev,
-            [dragging]: { x: newX, y: newY },
+            [dragging]: { x: newX, y: newY }
         }));
     };
 
@@ -97,33 +142,34 @@ const Projects = () => {
                 >
                     <div className={styles.intro}>
                     <p className={styles.topP}>
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                        It has roots in a piece of classical Latin literature from 45 BC, 
-                        making it over 2000 years old. Richard McClintock, a Latin professor 
-                        at Hampden-Sydney College in Virginia, looked up one of the more 
+                        Welcome to my projects showcase. Each project represents a 
+                        unique blend of creativity and technical expertise, carefully 
+                        crafted to solve real-world problems. From responsive web 
+                        applications to dynamic interactive experiences, these projects 
+                        highlight my ability to design, develop, and deploy high-quality 
+                        solutions that meet client and user needs.
                     </p>
                     <p>
-                        bscure Latin words, consectetur, from a Lorem Ipsum passage, and 
-                        going through the cites of the word in classical literature, 
-                        discovered the undoubtable source. Lorem Ipsum comes from sections 
-                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
-                        (The Extremes of Good and Evil) by Cicero, written in 45 BC. 
-                        This book is a treatise on the theory of ethics, very popular 
-                        during the Renaissance. The first line of Lorem Ipsum, "Lorem 
-                        ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                        Every project demonstrates a commitment to clean code, scalable 
+                        architecture, and intuitive user interfaces. I focus on combining 
+                        modern technologies with thoughtful design to create experiences 
+                        that are both functional and engaging. Please explore each project 
+                        to see the diverse range of skills and technologies applied, from 
+                        front-end development with React to back-end solutions with Node.js 
+                        and database management.
                     </p>
                 </div>
-                    {projects.map((project) => (
+                    {projects.map(project => (
                         <div
                             key={project.id}
                             className={styles.projectWrapper}
                             style={{
-                                left: positions[project.id]?.x ?? 0,
-                                top: positions[project.id]?.y ?? 0,
+                            left: pos[project.id]?.x ?? 0,
+                            top: pos[project.id]?.y ?? 0
                             }}
                             onMouseDown={(e) => handleMouseDown(e, project.id)}
                         >
-                        <ProjectCard project={project} />
+                            <ProjectCard project={project} />
                         </div>
                     ))}
                 </div>

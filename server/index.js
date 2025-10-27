@@ -27,6 +27,7 @@ app.use(session({
 }));
 
 app.use('/api', require('./routes/projects'));
+app.use('/api', require('./routes/contact'));
 
 
 app.listen(port, () => {

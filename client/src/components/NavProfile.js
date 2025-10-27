@@ -13,6 +13,7 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
 
 
     const handleCollapseToggle = () => {
@@ -34,7 +35,9 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
             const rect = containerRef.current.getBoundingClientRect();
             const centerX = window.innerWidth / 2 - rect.width / 2;
             const centerY = window.innerHeight / 2 - rect.height / 2;
+
             setPos({ x: centerX, y: centerY });
+            setTargetPos({ x: centerX, y: centerY });
         }
     };
 
@@ -42,23 +45,51 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
         updatePosition();
     }, []);
 
-    console.log(selectedProject)
+    useEffect(() => {
+        const handleGlobalMouseMove = (e) => {
+            if (dragging) {
+                const newX = e.clientX - offset.x;
+                const newY = e.clientY - offset.y;
+                setTargetPos({ x: newX, y: newY });
+            }
+        };
+        window.addEventListener('mousemove', handleGlobalMouseMove);
+        return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+    }, [dragging, offset]);
+
+    
+
+    useEffect(() => {
+        const handleGlobalMouseUp = () => setDragging(false);
+        window.addEventListener('mouseup', handleGlobalMouseUp);
+        return () => {
+            window.removeEventListener('mouseup', handleGlobalMouseUp);
+        };
+    }, []);
+
+    useEffect(() => {
+        let animationFrame;
+
+        const followCursor = () => {
+            setPos(prev => ({
+                x: prev.x + (targetPos.x - prev.x) * 0.2,
+                y: prev.y + (targetPos.y - prev.y) * 0.2
+            }));
+            animationFrame = requestAnimationFrame(followCursor);
+        };
+
+        if (dragging) followCursor();
+        else cancelAnimationFrame(animationFrame);
+
+        return () => cancelAnimationFrame(animationFrame);
+    }, [dragging, targetPos]);
 
     const handleMouseDown = (e) => {
         setDragging(true);
         setOffset({
-        x: e.clientX - pos.x,
-        y: e.clientY - pos.y
+            x: e.clientX - pos.x,
+            y: e.clientY - pos.y
         });
-    };
-
-    const handleMouseMove = (e) => {
-        if (dragging) {
-        setPos({
-            x: e.clientX - offset.x,
-            y: e.clientY - offset.y
-        });
-        }
     };
 
     const handleMouseUp = () => setDragging(false);
@@ -72,9 +103,7 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
             <div 
                 className={styles.grab}
                 onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
             >
                 <GoGrabber className={styles.grabIcon}/>
                 <span className={styles.tooltipText}>GRAB</span>

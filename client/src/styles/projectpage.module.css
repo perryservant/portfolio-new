@@ -13,6 +13,15 @@
     column-gap: 15px;
 }
 
+.back {
+    font-weight: 700;
+}
+
+.back:hover {
+    color: rgb(154, 207, 41);
+    transition: color 0.3s ease;
+}
+
 .box {
     margin-top: 10px;
     height: 30px;
@@ -131,9 +140,13 @@
     display: flex;
     flex-direction: column;
     align-items: end;
-    font-family: "Barlow", sans-serif;
-    font-weight: 500;
+    font-family: "Founders Grotesk";
+    width: 500px;
     text-align: justify;
+}
+
+.desc {
+    font-size: 15px;
 }
 
 .language {
