@@ -11,11 +11,13 @@ const LoadingBar = ({ onComplete }) => {
         const animate = () => {
             let increment;
             if (current < 18) {
-                increment = 0.1;
+                increment = 0.3;
             } else if (current < 83) {
                 increment = 0.7;
+            } else if (current < 87) {
+                increment = 0.1
             } else {
-                increment = 0.2; 
+                increment = 0.5; 
             }
 
             current += increment;
@@ -51,6 +53,21 @@ const LoadingBar = ({ onComplete }) => {
                 transition: "opacity 0.5s ease"
             }}
         >
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>
+                <img src="/imgs/g3.svg" alt="" style={{
+                    height: '40px',
+                    width: '60px'
+                }}/>
+                <p style={{
+                    fontFamily: 'Founders Grotesk',
+                    fontWeight: 500,
+                    paddingLeft: '10px'
+                }}>Novellum</p>
+            </div>
             <div style={{ width: "100vw", position: "relative" }}>
                 {/* Label above bar */}
                 <div style={{

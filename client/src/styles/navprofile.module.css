@@ -120,6 +120,7 @@ a {
     color: rgb(154, 207, 41);
     transition: color .3s ease;
     background: none;
+    cursor: pointer;
 }
 
 .tooltipText {

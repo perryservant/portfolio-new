@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 
 import styles from '../styles/projectpage.module.css';
@@ -149,7 +149,7 @@ const ProjectPage = () => {
                         <span className={styles.tooltipText}>GRAB</span>
                     </div>
                     <div className={styles.imgContainer}>
-                        <img src='/imgs/Screenshot 2025-10-20 at 16.53.44.png' alt=''/>
+                        <img src={`/${projectData.photos?.[1]}`} alt=''/>
                     </div>
                 </div>
 
@@ -176,7 +176,7 @@ const ProjectPage = () => {
                     </div>
                 </div>
                 <div className={styles.projectDesc}>
-                    <p><Link className={styles.back} to='/projects'>BACK</Link></p>
+                    <p><NavLink className={styles.back} to='/projects'>BACK</NavLink></p>
                     <p className={styles.desc}>
                         {projectData?.description}
                     </p>

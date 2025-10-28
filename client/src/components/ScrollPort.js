@@ -4,7 +4,7 @@ import AnimatedParagraph from '../components/AnimatedParagraph';
 
 import api from '../api/Axios';
 
-const ScrollPort = ({ activeIndex, setActiveIndex }) => {
+const ScrollPort = ({ activeIndex, setActiveIndex, contactRef, scrollToContact }) => {
     const sectionRef = useRef([]);
     const containerRef = useRef(null);
     const [formMsg, setFormMsg] = useState('');
@@ -170,7 +170,12 @@ const ScrollPort = ({ activeIndex, setActiveIndex }) => {
                     <section
                         key={idx}
                         data-index={idx}
-                        ref={(el) => (sectionRef.current[idx] = el)}
+                        ref={(el) => {
+                            sectionRef.current[idx] = el
+                            if (section.title === "Contact me") {
+                                contactRef.current = el;
+                            }
+                        }}
                         className={section.title === 'Contact me' ? styles.sectionContact : styles.section}
                     >
                         {section.title === 'Contact me' ? (

@@ -2,6 +2,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ProjectProvider } from '../context/ProjectContext';
 
+
+
 import styles from '../styles/root.module.css';
 import NavProfile from "./NavProfile";
 import Profile from "./Profile";
@@ -9,16 +11,18 @@ import LoadingBar from "./LoadingBar";
 
 const Root = () => {
     const canvasRef = useRef(null);
+    const contactRef = useRef(null);
     const location = useLocation();
-    const [fade, setFade] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
     const [isCollapsedA, setIsCollapsedA] = useState(() => window.innerWidth < 820);
     const [isCollapsedB, setIsCollapsedB] = useState(true);
 
-    useEffect(() => {
-        setFade(true);
-    }, [location]);
+    const scrollToContact = () => {
+        if (contactRef.current) {
+            contactRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -80,24 +84,21 @@ const Root = () => {
                 {isLoading && (
                     <LoadingBar onComplete={() => setIsLoading(false)}/>
                 )}
-                <div>
-                    <Profile 
-                        isCollapsedA={isCollapsedA}
-                        setIsCollapsedA={setIsCollapsedA}
-                    />
-                </div>
-                <div>
-                    <NavProfile 
-                        location={location}
-                        isCollapsedA={isCollapsedA}
-                        setIsCollapsedA={setIsCollapsedA}
-                        isCollapsedB={isCollapsedB} 
-                        setIsCollapsedB={setIsCollapsedB}
-                    />
-                </div>
-                <div >
-                    <Outlet context={{ isLoaded: !isLoading }}/>
-                </div>
+                
+                <Profile 
+                    isCollapsedA={isCollapsedA}
+                    setIsCollapsedA={setIsCollapsedA}
+                />
+                <NavProfile 
+                    location={location}
+                    isCollapsedA={isCollapsedA}
+                    setIsCollapsedA={setIsCollapsedA}
+                    isCollapsedB={isCollapsedB} 
+                    setIsCollapsedB={setIsCollapsedB}
+                    scrollToContact={scrollToContact}
+                />
+                <Outlet context={{ isLoaded: !isLoading, contactRef, scrollToContact }}/>
+
             </div>
         </ProjectProvider>
         

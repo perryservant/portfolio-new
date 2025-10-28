@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 
 import styles from '../styles/navprofile.module.css';
 import { GoGrabber } from "react-icons/go";
 
-const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, setIsCollapsedA }) => {
+const NavProfile = ({ 
+    location, isCollapsedB, 
+    setIsCollapsedB, 
+    isCollapsedA, 
+    setIsCollapsedA,
+    scrollToContact
+}) => {
     const { selectedProject } = useProject();
 
 
@@ -14,11 +20,23 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
     const [dragging, setDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
+    const navigate = useNavigate();
 
 
     const handleCollapseToggle = () => {
         setIsCollapsedB(!isCollapsedB);
     };
+
+    const handleContactClick = () => {
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                scrollToContact?.();
+            }, 50);
+        } else {
+            scrollToContact?.();
+        }
+    }
 
     const breadCrumbs = () => {
         if (location.pathname === '/') {
@@ -128,7 +146,11 @@ const NavProfile = ({ location, isCollapsedB, setIsCollapsedB, isCollapsedA, set
                                 handleCollapseToggle();
                                 if (!isCollapsedA) setIsCollapsedA(true);
                             }} to='projects'>\ projects</NavLink></li>
-                            <li><NavLink className={styles.linkStyle} onClick={handleCollapseToggle} to='contact'>\ contact</NavLink></li>
+                            <li className={styles.linkStyle} onClick={() => {
+                                handleContactClick();
+                                handleCollapseToggle();
+                                if (isCollapsedA) setIsCollapsedA(false);
+                            }}> \ Contact</li>
                         </ul>
                     </div>
                 </div>

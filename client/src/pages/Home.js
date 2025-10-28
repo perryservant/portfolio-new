@@ -8,7 +8,7 @@ import Marquee from "react-fast-marquee";
 
 
 const Home = () => {
-    const { isLoaded } = useOutletContext();
+    const { isLoaded, contactRef, scrollToContact } = useOutletContext();
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [containerWidth, setContainerWidth] = useState(0);
@@ -59,7 +59,12 @@ const Home = () => {
                             </div>
 
                             <div ref={containerRef} className={styles.middlex}>
-                                {isLoaded && <ScrollPort activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>}
+                                {isLoaded && <ScrollPort 
+                                    activeIndex={activeIndex} 
+                                    setActiveIndex={setActiveIndex}
+                                    contactRef={contactRef}
+                                    scrollToContact={scrollToContact}
+                                />}
                             </div>
 
                             <div className={activeIndex === 4 ? styles.bottomLineActive : styles.bottomLine}>

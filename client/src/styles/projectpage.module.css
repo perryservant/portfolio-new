@@ -125,14 +125,14 @@
 .imgContainer img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 3px;
 }
 
 .projectImg {
     position: absolute;
     width: 750px;
-    height: 450px;
+    height: 430px;
 }
 
 .projectDesc {
