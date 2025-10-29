@@ -43,7 +43,7 @@ const LoadingBar = ({ onComplete }) => {
                 top: 0,
                 left: 0,
                 width: "100vw",
-                height: "100vh",
+                height: "100%",
                 backgroundColor: "rgb(241,241,241)",
                 display: "flex",
                 justifyContent: "center",

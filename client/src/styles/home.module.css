@@ -122,7 +122,6 @@
     flex: 1;
     display: flex;
     align-items: center;
-  
 }
 
 .marquee p {
@@ -176,5 +175,18 @@
 
     .box p{
         font-size: 10px;
+    }
+
+    .active {
+        font-size: 10px;
+    }
+
+    .marquee {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .marquee p{
+        font-size: 8px;
     }
 }
