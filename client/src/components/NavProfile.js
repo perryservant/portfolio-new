@@ -110,6 +110,27 @@ const NavProfile = ({
         });
     };
 
+    const handlePointerDown = (e) => {
+        e.preventDefault();
+        const point = e.touches ? e.touches[0] : e;
+        setDragging(true);
+        setOffset({
+            x: point.clientX - pos.x,
+            y: point.clientY - pos.y
+        });
+    };
+
+    const handlePointerMove = (e) => {
+        if (!dragging) return;
+        const point = e.touches ? e.touches[0] : e;
+        setTargetPos({
+            x: point.clientX - offset.x,
+            y: point.clientY - offset.y
+        });
+    };
+
+    const handlePointerUp = () => setDragging(false);
+
     const handleMouseUp = () => setDragging(false);
 
     return (
@@ -117,6 +138,12 @@ const NavProfile = ({
             ref={containerRef}
             className={styles.mainContainer}
             style={{ left: pos.x, top: pos.y }}
+            onMouseDown={handlePointerDown}
+            onMouseMove={handlePointerMove}
+            onMouseUp={handlePointerUp}
+            onTouchStart={handlePointerDown}
+            onTouchMove={handlePointerMove}
+            onTouchEnd={handlePointerUp}
         >
             <div 
                 className={styles.grab}
