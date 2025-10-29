@@ -46,7 +46,7 @@ const Root = () => {
 
         const resize = () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = document.documentElement.clientHeight;
         };
 
         const generateNoise = () => {
