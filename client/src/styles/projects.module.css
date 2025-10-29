@@ -4,6 +4,7 @@
     padding: 0 30px;
     display: flex;
     flex-direction: column;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .top {
@@ -29,6 +30,7 @@
 
 .middle {
     flex: 1;
+    min-height: 0;
 }
 
 .bottom {

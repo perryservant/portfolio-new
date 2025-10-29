@@ -45,8 +45,9 @@ const Root = () => {
         let animationFrameId;
 
         const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.clientHeight;
+            const rect = canvasRef.current.getBoundingClientRect();
+            canvasRef.current.width = rect.width;
+            canvasRef.current.height = rect.height;
         };
 
         const generateNoise = () => {
