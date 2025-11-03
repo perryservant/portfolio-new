@@ -12,10 +12,6 @@ const ProjectCard = ({ project }) => {
         PY: styles.purple
     };
 
-    const goToProject = (projectId) => {
-        navigate(`/projectpage/${projectId}`);
-    };
-
     return (
         <div className={styles.mainContainer}>
             <div className={styles.label}>

@@ -187,6 +187,6 @@
     }
 
     .marquee p{
-        font-size: 8px;
+        display: none;
     }
 }
