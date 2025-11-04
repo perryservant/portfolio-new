@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 
 import styles from '../styles/projectpage.module.css';
