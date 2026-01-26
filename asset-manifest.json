@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.36c1745c.css",
-    "main.js": "/static/js/main.3f6d72d1.js",
+    "main.css": "/static/css/main.81427267.css",
+    "main.js": "/static/js/main.156393da.js",
     "static/js/453.480c8260.chunk.js": "/static/js/453.480c8260.chunk.js",
     "static/media/founders-grotesk-semibold.woff2": "/static/media/founders-grotesk-semibold.ea86dab95cc4b5e8932d.woff2",
     "static/media/founders-grotesk-bold.woff2": "/static/media/founders-grotesk-bold.b336e30ec825a5865733.woff2",
@@ -14,12 +14,12 @@
     "static/media/founders-grotesk-mono-regular.woff2": "/static/media/founders-grotesk-mono-regular.0a43c533cf1dcfa6c44b.woff2",
     "static/media/founders-grotesk-mono-light.woff2": "/static/media/founders-grotesk-mono-light.fa819030d731ea52b142.woff2",
     "index.html": "/index.html",
-    "main.36c1745c.css.map": "/static/css/main.36c1745c.css.map",
-    "main.3f6d72d1.js.map": "/static/js/main.3f6d72d1.js.map",
+    "main.81427267.css.map": "/static/css/main.81427267.css.map",
+    "main.156393da.js.map": "/static/js/main.156393da.js.map",
     "453.480c8260.chunk.js.map": "/static/js/453.480c8260.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36c1745c.css",
-    "static/js/main.3f6d72d1.js"
+    "static/css/main.81427267.css",
+    "static/js/main.156393da.js"
   ]
 }
