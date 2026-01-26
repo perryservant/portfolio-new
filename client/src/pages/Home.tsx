@@ -40,7 +40,7 @@ const Home = () => {
                 {/* Main Content */}
                 <div className="relative z-10 flex-1 flex flex-col">
                     {/* Top Navigation Tabs */}
-                    <div className="px-[50px] pt-[80px] pb-[40px] max-[820px]:px-[20px] max-[820px]:pt-[220px] max-[820px]:pb-[20px] pl-[380px] max-[1024px]:pl-[50px]">
+                    <div className="px-[50px] pt-[70px] pb-[35px] max-[820px]:px-[20px] max-[820px]:pt-[220px] max-[820px]:pb-[20px] pl-[380px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px]">
                         <div className="flex gap-[30px] items-center flex-wrap max-[820px]:gap-[15px]">
                             {sections.map((section, idx) => (
                                 <button
@@ -66,37 +66,35 @@ const Home = () => {
                     </div>
 
                     {/* Content Area */}
-                    <div className="flex-1 min-h-0 px-[50px] pb-[50px] max-[820px]:px-[20px] max-[820px]:pb-[30px] pl-[380px] max-[1024px]:pl-[50px]">
-                        <div className="h-full flex">
+                    <div className="flex-1 min-h-0 px-[50px] pb-[40px] max-[820px]:px-[20px] max-[820px]:pb-[30px] pl-[380px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px]">
+                        <div className="h-full flex max-[1200px]:flex-col">
                             {/* Left Side - Intro Text */}
-                            <div className="w-[400px] flex flex-col justify-center pr-[60px] max-[1024px]:hidden">
+                            <div className="w-[380px] flex flex-col justify-center pr-[50px] max-[1200px]:w-full max-[1200px]:pr-0 max-[1200px]:mb-[40px] max-[1200px]:text-center max-[1024px]:hidden">
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6 }}
                                 >
-                                    <h1 className="text-7xl font-medium uppercase mb-[30px] leading-tight">
+                                    <h1 className="text-6xl font-medium uppercase mb-[25px] leading-tight">
                                         Full-Stack<br/>Engineer
                                     </h1>
-                                    <p className="font-grotesk text-[15px] leading-relaxed text-gray-700 mb-[40px]">
+                                    <p className="font-grotesk text-[14px] leading-relaxed text-gray-700 mb-[35px]">
                                         Building modern web applications with clean code, 
                                         scalable architecture, and thoughtful design.
                                     </p>
-                                    <div className="flex gap-[20px]">
-                                        <Link
-                                            to="/projects"
-                                            className="bg-black text-white px-[30px] py-[12px] text-[12px] uppercase font-medium hover:bg-[rgb(154,207,41)] hover:text-black transition-all duration-300"
-                                        >
-                                            View Work
-                                        </Link>
-                                    </div>
+                                    <Link
+                                        to="/projects"
+                                        className="inline-block bg-black text-white px-[28px] py-[10px] text-[11px] uppercase font-medium hover:bg-[rgb(154,207,41)] hover:text-black transition-all duration-300"
+                                    >
+                                        View Work
+                                    </Link>
                                 </motion.div>
                             </div>
 
                             {/* Right Side - Scrollable Content */}
                             <div 
                                 ref={containerRef}
-                                className="flex-1 h-full overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                                className="flex-1 h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-[1200px]:w-full"
                             >
                                 {isLoaded && (
                                     <ScrollPort 
@@ -141,9 +139,9 @@ const Home = () => {
                     </div>
                 </div>
                 
-                <div className="h-[50px] max-[430px]:h-[35px] flex border-t border-black overflow-hidden">
-                    <Marquee autoFill={true} speed={50}>
-                        <p className="text-[12px] max-[430px]:text-[9px] uppercase font-medium">
+                <div className="h-[40px] max-[430px]:h-[30px] flex border-t border-black overflow-hidden opacity-60">
+                    <Marquee autoFill={true} speed={40}>
+                        <p className="text-[11px] max-[430px]:text-[8px] uppercase font-medium text-gray-600">
                             React • Node.js • PostgreSQL • Full-Stack Engineering • Engine Building • UI/UX Design • Architecture • TypeScript
                         </p>
                     </Marquee>

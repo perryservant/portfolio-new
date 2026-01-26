@@ -23,7 +23,7 @@ const AnimatedParagraph = ({ text, isActive }: AnimatedParagraphProps) => {
     const words = text.split(" ");
 
     return (
-        <p>
+        <p className="max-w-[600px] px-[20px] text-[15px] leading-relaxed max-[1200px]:text-[14px] max-[820px]:text-[13px] max-[430px]:text-[12px]">
             {words.map((word, idx) => (
                 <span
                     key={idx}

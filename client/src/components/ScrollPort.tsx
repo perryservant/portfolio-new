@@ -75,10 +75,10 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
                         ref={(el) => {
                             sectionRef.current[idx] = el;
                         }}
-                        className="h-full w-full snap-start flex flex-col justify-center items-center font-grotesk-mono text-center"
+                        className="h-full w-full snap-start flex flex-col justify-center items-center font-grotesk-mono text-center px-[20px] max-[1200px]:px-[15px]"
                     >
                         <h1
-                            className={`text-5xl m-0 max-[430px]:text-[50px] ${
+                            className={`text-5xl m-0 max-[1200px]:text-4xl max-[820px]:text-3xl max-[430px]:text-[40px] break-words ${
                                 activeIndex === idx 
                                     ? 'opacity-100 translate-y-0 animate-[slideFadeIn_0.8s_forwards]' 
                                     : 'opacity-0 translate-y-5'

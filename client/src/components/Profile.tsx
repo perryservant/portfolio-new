@@ -20,7 +20,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white/30 backdrop-blur-[1px] border-2 border-black rounded flex flex-col z-[1] w-full max-[820px]:w-full"
+                className="bg-white border-2 border-black rounded flex flex-col z-[1] w-full max-[820px]:w-full"
             >
                 <div className="h-[50px] border-b-2 border-black grid grid-cols-[1fr_80px]">
                     <div className="border-r-2 border-black flex justify-center items-center bg-black/5">
@@ -53,7 +53,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white/30 backdrop-blur-[1px] border-2 border-black rounded mt-[5px] w-full max-[820px]:w-full"
+                className="bg-white border-2 border-black rounded mt-[5px] w-full max-[820px]:w-full"
             >
                 {/* Toggle Button */}
                 <div 
