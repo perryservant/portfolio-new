@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import styles from '../styles/scrollport.module.css';
 
-const AnimatedParagraph = ({ text, isActive }) => {
-    const [trigger, setTrigger] = useState(false);
-    const [hasAnimated, setHasAnimated] = useState(false);
+interface AnimatedParagraphProps {
+    text: string;
+    isActive: boolean;
+}
+
+const AnimatedParagraph = ({ text, isActive }: AnimatedParagraphProps) => {
+    const [trigger, setTrigger] = useState<boolean>(false);
+    const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
     useEffect(() => {
         if (isActive) {
@@ -11,7 +15,7 @@ const AnimatedParagraph = ({ text, isActive }) => {
             const timeout = setTimeout(() => {
                 setTrigger(true);
                 setHasAnimated(true);
-            }, 150)    
+            }, 150);
             return () => clearTimeout(timeout);
         }
     }, [isActive]);
@@ -23,8 +27,8 @@ const AnimatedParagraph = ({ text, isActive }) => {
             {words.map((word, idx) => (
                 <span
                     key={idx}
-                    className={`${styles.word} ${
-                        trigger || hasAnimated ? styles.active : ""
+                    className={`inline-block transition-opacity duration-300 ${
+                        trigger || hasAnimated ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ animationDelay: `${idx * 0.15}s` }}
                 >

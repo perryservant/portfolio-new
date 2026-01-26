@@ -1,28 +1,35 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { ProjectProvider } from '../context/ProjectContext';
-
-
-
-import styles from '../styles/root.module.css';
 import NavProfile from "./NavProfile";
 import Profile from "./Profile";
 import LoadingBar from "./LoadingBar";
 
+interface OutletContext {
+    isLoaded: boolean;
+}
+
 const Root = () => {
-    const canvasRef = useRef(null);
-    const contactRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const location = useLocation();
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [isCollapsedA, setIsCollapsedA] = useState(() => window.innerWidth < 820);
-    const [isCollapsedB, setIsCollapsedB] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isCollapsedA, setIsCollapsedA] = useState<boolean>(() => {
+        // Collapse by default if not on home page or if mobile
+        return location.pathname !== '/' || window.innerWidth < 820;
+    });
+    const [isCollapsedB, setIsCollapsedB] = useState<boolean>(true);
 
-    const scrollToContact = () => {
-        if (contactRef.current) {
-            contactRef.current.scrollIntoView({ behavior: "smooth" });
+    // Update collapse state when route changes
+    useEffect(() => {
+        if (location.pathname === '/') {
+            // On home page, only collapse if mobile
+            setIsCollapsedA(window.innerWidth < 820);
+        } else {
+            // On other pages, always collapse
+            setIsCollapsedA(true);
         }
-    };
+    }, [location.pathname]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -41,13 +48,17 @@ const Root = () => {
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        if (!canvas) return;
+        
         const ctx = canvas.getContext("2d");
-        let animationFrameId;
+        if (!ctx) return;
+        
+        let animationFrameId: number;
 
         const resize = () => {
-            const rect = canvasRef.current.getBoundingClientRect();
-            canvasRef.current.width = rect.width;
-            canvasRef.current.height = rect.height;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
         };
 
         const generateNoise = () => {
@@ -78,9 +89,10 @@ const Root = () => {
 
     return (
         <ProjectProvider>
-            <div className={styles.rootContainer} >
+            <div className="bg-[rgb(241,241,241)] h-[100dvh] w-full pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] overflow-hidden transition-opacity duration-400">
                 <canvas
-                    ref={canvasRef} className={styles.canva}
+                    ref={canvasRef} 
+                    className="fixed top-0 left-0 w-full h-[100dvh] opacity-[0.08] pointer-events-none z-[9999]"
                 />
                 {isLoading && (
                     <LoadingBar onComplete={() => setIsLoading(false)}/>
@@ -96,9 +108,8 @@ const Root = () => {
                     setIsCollapsedA={setIsCollapsedA}
                     isCollapsedB={isCollapsedB} 
                     setIsCollapsedB={setIsCollapsedB}
-                    scrollToContact={scrollToContact}
                 />
-                <Outlet context={{ isLoaded: !isLoading, contactRef, scrollToContact }}/>
+                <Outlet context={{ isLoaded: !isLoading } as OutletContext}/>
 
             </div>
         </ProjectProvider>
