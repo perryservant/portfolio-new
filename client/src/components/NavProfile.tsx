@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 import { GoGrabber } from "react-icons/go";
 
@@ -24,16 +24,9 @@ const NavProfile = ({
     const [dragging, setDragging] = useState<boolean>(false);
     const [offset, setOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
     const [targetPos, setTargetPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-    const navigate = useNavigate();
 
     const handleCollapseToggle = () => {
         setIsCollapsedB(!isCollapsedB);
-    };
-
-    const handleContactClick = () => {
-        if (location.pathname !== '/') {
-            navigate('/');
-        }
     };
 
     const breadCrumbs = (): string => {

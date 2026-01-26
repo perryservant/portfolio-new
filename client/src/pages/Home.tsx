@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useOutletContext } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import ScrollPort from '../components/ScrollPort';
@@ -118,7 +118,7 @@ const Home = () => {
                             © copyright {currentYear} perry servant
                         </p>
                         <div className="max-[430px]:hidden">
-                            <p>///////////////////////////////////////////////////</p>
+                            <p>{'///////////////////////////////////////////////////'}</p>
                         </div>
                         <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
                             <a 

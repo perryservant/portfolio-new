@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
 import { mockApi, Project } from '../data/mockData';
@@ -10,7 +10,7 @@ const ProjectPage = () => {
     const [projectData, setProjectData] = useState<Project | null>(null);
     const { setSelectedProject } = useProject();
 
-    const fetchProjectData = async () => {
+    const fetchProjectData = useCallback(async () => {
         if (!id) return;
         try {
             const data = await mockApi.getProject(Number(id));
@@ -21,11 +21,11 @@ const ProjectPage = () => {
         } catch (error) {
             console.error('Error fetch project data', error);
         }
-    };
+    }, [id, setSelectedProject]);
 
     useEffect(() => {
         fetchProjectData();
-    }, [id, setSelectedProject]);
+    }, [fetchProjectData]);
 
     if (!projectData) {
         return (
@@ -151,7 +151,7 @@ const ProjectPage = () => {
                             © copyright {currentYear} perry servant
                         </p>
                         <div className="max-[430px]:hidden">
-                            <p>///////////////////////////////////////////////////</p>
+                            <p>{'///////////////////////////////////////////////////'}</p>
                         </div>
                         <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
                             <a 

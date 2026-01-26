@@ -3,7 +3,6 @@ import { mockApi, Project } from '../data/mockData';
 import Clock from '../components/Clock';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Marquee from "react-fast-marquee";
 import { FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
@@ -174,7 +173,7 @@ const Projects = () => {
                             © copyright {currentYear} perry servant
                         </p>
                         <div className="max-[430px]:hidden">
-                            <p>///////////////////////////////////////////////////</p>
+                            <p>{'///////////////////////////////////////////////////'}</p>
                         </div>
                         <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
                             <a 
