@@ -14,10 +14,18 @@ if [ "$CURRENT_BRANCH" != "main" ]; then
     git checkout main
 fi
 
-# Install dependencies (always ensure they're up to date)
+# Install dependencies (always ensure they're up to date, including devDependencies)
 echo "📦 Installing/updating dependencies..."
 cd client
-npm install --legacy-peer-deps
+# Ensure NODE_ENV is not set to production so devDependencies are installed
+unset NODE_ENV
+npm install --legacy-peer-deps --include=dev
+
+# Verify TypeScript types are installed
+if [ ! -d "node_modules/@types/react" ] || [ ! -d "node_modules/typescript" ]; then
+    echo "⚠️  TypeScript types missing, reinstalling..."
+    npm install --save-dev @types/react @types/react-dom @types/node typescript --legacy-peer-deps
+fi
 
 # Build the project
 echo "🔨 Building project..."
