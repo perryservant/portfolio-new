@@ -14,9 +14,16 @@ if [ "$CURRENT_BRANCH" != "main" ]; then
     git checkout main
 fi
 
-# Build the project
-echo "📦 Building project..."
+# Install dependencies if needed
+echo "📦 Checking dependencies..."
 cd client
+if [ ! -d "node_modules" ]; then
+    echo "📥 Installing dependencies..."
+    npm install --legacy-peer-deps
+fi
+
+# Build the project
+echo "🔨 Building project..."
 npm run build
 cd ..
 
