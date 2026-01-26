@@ -81,5 +81,14 @@ git push origin gh-pages
 echo "🔄 Switching back to main branch..."
 git checkout main
 
+# Verify and restore TypeScript types if needed (branch switch might affect node_modules)
+echo "🔍 Verifying TypeScript types..."
+cd client
+if [ ! -d "node_modules/@types/react" ] || [ ! -d "node_modules/typescript" ]; then
+    echo "⚠️  TypeScript types missing after branch switch, reinstalling..."
+    npm install --save-dev @types/react @types/react-dom @types/node typescript --legacy-peer-deps
+fi
+cd ..
+
 echo "✅ Deployment complete!"
 echo "🌐 Your site should update in a few minutes at www.perryservant.com"
