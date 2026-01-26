@@ -20,8 +20,14 @@ cd client
 npm run build
 cd ..
 
-# Store build path
-BUILD_DIR="client/build"
+# Store build path (absolute path to avoid issues after branch switch)
+BUILD_DIR="$(pwd)/client/build"
+
+# Verify build was successful
+if [ ! -d "$BUILD_DIR" ]; then
+    echo "❌ Error: Build failed! Build directory not found."
+    exit 1
+fi
 
 # Switch to gh-pages branch
 echo "🔄 Switching to gh-pages branch..."
@@ -31,13 +37,13 @@ git checkout gh-pages
 echo "🧹 Cleaning up old files..."
 find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'deploy.sh' -exec rm -rf {} +
 
-# Copy build files (only from build directory)
+# Copy build files (using absolute path)
 echo "📋 Copying build files..."
 if [ -d "$BUILD_DIR" ]; then
     cp -r "$BUILD_DIR"/* .
     echo "www.perryservant.com" > CNAME
 else
-    echo "❌ Error: Build directory not found! Make sure you're on main branch and have built the project."
+    echo "❌ Error: Build directory not found at $BUILD_DIR"
     git checkout main
     exit 1
 fi
