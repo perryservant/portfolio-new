@@ -27,14 +27,19 @@ echo "🔨 Building project..."
 npm run build
 cd ..
 
-# Store build path (absolute path to avoid issues after branch switch)
-BUILD_DIR="$(pwd)/client/build"
+# Store build path and create temp copy
+BUILD_DIR="client/build"
+TEMP_BUILD_DIR="/tmp/portfolio-build-$$"
 
 # Verify build was successful
 if [ ! -d "$BUILD_DIR" ]; then
     echo "❌ Error: Build failed! Build directory not found."
     exit 1
 fi
+
+# Copy build to temp location (survives branch switch)
+echo "📦 Preparing build files..."
+cp -r "$BUILD_DIR" "$TEMP_BUILD_DIR"
 
 # Switch to gh-pages branch
 echo "🔄 Switching to gh-pages branch..."
@@ -44,13 +49,15 @@ git checkout gh-pages
 echo "🧹 Cleaning up old files..."
 find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'deploy.sh' -exec rm -rf {} +
 
-# Copy build files (using absolute path)
+# Copy build files from temp location
 echo "📋 Copying build files..."
-if [ -d "$BUILD_DIR" ]; then
-    cp -r "$BUILD_DIR"/* .
+if [ -d "$TEMP_BUILD_DIR" ]; then
+    cp -r "$TEMP_BUILD_DIR"/* .
     echo "www.perryservant.com" > CNAME
+    # Clean up temp directory
+    rm -rf "$TEMP_BUILD_DIR"
 else
-    echo "❌ Error: Build directory not found at $BUILD_DIR"
+    echo "❌ Error: Build directory not found in temp location"
     git checkout main
     exit 1
 fi
