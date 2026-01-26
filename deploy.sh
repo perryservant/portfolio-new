@@ -18,8 +18,8 @@ fi
 echo "📦 Installing/updating dependencies..."
 cd client
 # Ensure NODE_ENV is not set to production so devDependencies are installed
-unset NODE_ENV
-npm install --legacy-peer-deps --include=dev
+export NODE_ENV=""
+npm install --legacy-peer-deps
 
 # Verify TypeScript types are installed
 if [ ! -d "node_modules/@types/react" ] || [ ! -d "node_modules/typescript" ]; then
