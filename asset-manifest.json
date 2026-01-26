@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.36c1745c.css",
+    "main.js": "/static/js/main.3f6d72d1.js",
+    "static/js/453.480c8260.chunk.js": "/static/js/453.480c8260.chunk.js",
+    "static/media/founders-grotesk-semibold.woff2": "/static/media/founders-grotesk-semibold.ea86dab95cc4b5e8932d.woff2",
+    "static/media/founders-grotesk-bold.woff2": "/static/media/founders-grotesk-bold.b336e30ec825a5865733.woff2",
+    "static/media/founders-grotesk-light.woff2": "/static/media/founders-grotesk-light.864bdbea666da51b0f52.woff2",
+    "static/media/founders-grotesk-medium.woff2": "/static/media/founders-grotesk-medium.86627be235fce47df83a.woff2",
+    "static/media/founders-grotesk-regular.woff2": "/static/media/founders-grotesk-regular.1d36b90595b618513469.woff2",
+    "static/media/founders-grotesk-mono-bold.woff2": "/static/media/founders-grotesk-mono-bold.077f3bb15aebca738dbc.woff2",
+    "static/media/founders-grotesk-mono-semibold.woff2": "/static/media/founders-grotesk-mono-semibold.7c65b7c324041125561c.woff2",
+    "static/media/founders-grotesk-mono-medium.woff2": "/static/media/founders-grotesk-mono-medium.79fb2e4a632d5036566c.woff2",
+    "static/media/founders-grotesk-mono-regular.woff2": "/static/media/founders-grotesk-mono-regular.0a43c533cf1dcfa6c44b.woff2",
+    "static/media/founders-grotesk-mono-light.woff2": "/static/media/founders-grotesk-mono-light.fa819030d731ea52b142.woff2",
+    "index.html": "/index.html",
+    "main.36c1745c.css.map": "/static/css/main.36c1745c.css.map",
+    "main.3f6d72d1.js.map": "/static/js/main.3f6d72d1.js.map",
+    "453.480c8260.chunk.js.map": "/static/js/453.480c8260.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36c1745c.css",
+    "static/js/main.3f6d72d1.js"
+  ]
+}
