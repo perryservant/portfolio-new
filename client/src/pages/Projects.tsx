@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { mockApi, Project } from '../data/mockData';
 import Clock from '../components/Clock';
 import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
