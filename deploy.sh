@@ -14,13 +14,10 @@ if [ "$CURRENT_BRANCH" != "main" ]; then
     git checkout main
 fi
 
-# Install dependencies if needed
-echo "📦 Checking dependencies..."
+# Install dependencies (always ensure they're up to date)
+echo "📦 Installing/updating dependencies..."
 cd client
-if [ ! -d "node_modules" ]; then
-    echo "📥 Installing dependencies..."
-    npm install --legacy-peer-deps
-fi
+npm install --legacy-peer-deps
 
 # Build the project
 echo "🔨 Building project..."
