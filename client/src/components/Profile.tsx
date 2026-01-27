@@ -115,7 +115,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                                 </div>
                                 <div className="flex-1 p-[15px]">
                                     <p className="m-0 text-[12px] leading-relaxed font-grotesk">
-                                        Typescript, Git & GitHub, React, Redux, Node.js, Fastify, 
+                                        TypeScript, Git & GitHub, React, Redux, Node.js, Fastify, 
                                         Express.js, SQL, PostegresSQL, Web Security, 
                                         Data structures, Algorithms
                                     </p>

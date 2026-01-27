@@ -15,10 +15,10 @@ const Home = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const sections = [
-        { id: 0, label: 'About', full: 'Full-stack Developer' },
-        { id: 1, label: 'Skills', full: 'Core Competencies' },
-        { id: 2, label: 'Work', full: 'Highlighted Projects' },
-        { id: 3, label: 'Expertise', full: 'Skills & Expertise' }
+        { id: 0, label: 'Intro' },
+        { id: 1, label: 'Skills' },
+        { id: 2, label: 'Work' },
+        { id: 3, label: 'Expertise' }
     ];
 
     return (

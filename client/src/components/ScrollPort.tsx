@@ -16,7 +16,7 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
         content: string | ReactNode;
     }> = [
         {
-            title: "Full-Stack",
+            title: "Engineering",
             content: "I build robust and scalable web applications using modern technologies like React, Node.js, and PostgreSQL. I am passionate about creating seamless user experiences and efficient backend systems, bridging the gap between design and functionality."
         },
         {
@@ -25,11 +25,11 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
         },
         {
             title: "Highlighted Projects",
-            content: "Developed full-stack applications including e-commerce platforms, real-time dashboards, and portfolio management tools. Focused on responsive design, performance optimization, and integrating secure authentication and data management systems."
+            content: "Collaborated as part of a three-person team to develop FlowMaestro, a comprehensive AI workflow orchestration platform featuring visual workflow builders and autonomous AI agents. Independently architected and built The Wetland Shop, a full-stack e-commerce solution, and Novellum, a backend-as-a-service platform for modern businesses. Each project demonstrates expertise in scalable system design, production-ready deployment strategies, and collaborative development practices."
         },
         {
             title: "Skills & Expertise",
-            content: "As a full-stack engineer in training, I have developed strong skills in JavaScript, React, Node.js, and PostgreSQL. I focus on writing clean, maintainable code, understanding modern development practices, and continuously improving my technical abilities through personal projects and hands-on learning."
+            content: "As a full-stack engineer, I specialize in architecting and building complete systems from the ground up, including custom engines and scalable infrastructure. Proficient in TypeScript, React, Node.js, and PostgreSQL, with expertise in designing full-stack architectures, developing reusable engine components, and implementing production-ready solutions. I focus on writing clean, maintainable code, understanding modern development practices, and continuously improving my technical abilities through collaborative team projects and independent development work."
         }
     ];
 
