@@ -29,10 +29,11 @@ const Root = () => {
         let animationFrameId: number;
 
         const resize = () => {
-            // Use full viewport dimensions to cover safe areas (notch/Dynamic Island)
-            // Use visualViewport if available for more accurate dimensions, otherwise fallback to window
-            const width = window.visualViewport?.width || window.innerWidth || document.documentElement.clientWidth;
-            const height = window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight;
+            // Use full screen dimensions to cover safe areas (notch/Dynamic Island)
+            // In standalone web app mode, use screen dimensions; otherwise use window dimensions
+            const isStandalone = (window.navigator as any).standalone || window.matchMedia('(display-mode: standalone)').matches;
+            const width = isStandalone ? window.screen.width : (window.visualViewport?.width || window.innerWidth || document.documentElement.clientWidth);
+            const height = isStandalone ? window.screen.height : (window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight);
             canvas.width = width;
             canvas.height = height;
         };
@@ -65,11 +66,11 @@ const Root = () => {
 
     return (
         <ProjectProvider>
-            <div className="bg-[rgb(241,241,241)] h-[100dvh] w-full pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] flex flex-col overflow-hidden transition-opacity duration-400" style={{ paddingTop: 0 }}>
+            <div className="bg-[rgb(241,241,241)] w-full flex flex-col overflow-hidden transition-opacity duration-400" style={{ paddingTop: 0, paddingBottom: 'env(safe-area-inset-bottom)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)', minHeight: '100vh', height: '100vh' }}>
                 <canvas
                     ref={canvasRef} 
-                    className="fixed top-0 left-0 opacity-[0.08] pointer-events-none z-[9999]"
-                    style={{ width: '100vw', height: '100dvh', left: 0, top: 0 }}
+                    className="fixed opacity-[0.08] pointer-events-none z-[9999]"
+                    style={{ width: '100vw', height: '100vh', left: 0, top: 0 }}
                 />
                 {isLoading && (
                     <LoadingBar onComplete={() => setIsLoading(false)}/>

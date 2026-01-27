@@ -12,14 +12,14 @@ const Footer = ({ showMarquee = false }: FooterProps) => {
     return (
         <div className="border-t-2 border-black">
             <div className="min-h-[60px] flex items-center justify-between px-[50px] max-[820px]:px-[20px] max-[430px]:px-[15px] max-[430px]:flex-col max-[430px]:justify-center max-[430px]:py-[15px] max-[430px]:gap-[10px]">
-                <div className="flex items-center gap-[30px] max-[820px]:gap-[20px] max-[430px]:flex-col max-[430px]:gap-[10px] max-[430px]:w-full max-[430px]:items-center">
+                <div className="flex items-center gap-[30px] max-[878px]:gap-[20px] max-[430px]:flex-col max-[430px]:gap-[10px] max-[430px]:w-full max-[430px]:items-center">
                     <p className="text-[11px] uppercase font-medium whitespace-nowrap max-[430px]:text-[10px]">
                         © copyright {currentYear} perry servant
                     </p>
-                    <div className="max-[430px]:hidden">
+                    <div className="max-[878px]:hidden">
                         <p>{'///////////////////////////////////////////////////'}</p>
                     </div>
-                    <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
+                    <div className="flex items-center gap-[20px] max-[878px]:gap-[12px]">
                         <a 
                             href="mailto:perry@perryservant.com"
                             className="text-[11px] uppercase font-medium hover:text-[rgb(207,171,41)] transition-colors duration-300 max-[430px]:text-[10px]"
