@@ -21,41 +21,12 @@
     font-size: 13px;
   }
 
-  html {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: rgb(241, 241, 241);
-    /* Ensure full coverage in standalone web app mode */
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-
-  body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: rgb(241, 241, 241);
-    overflow: hidden;
-    /* Ensure full coverage in standalone web app mode */
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-
-  #root {
+  html, body, #root {
     font-family: "Founders Grotesk Mono", "Founders Grotesk", -apple-system, BlinkMacSystemFont, 'Segoe UI',
       'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     overflow: hidden;
     padding: 0;
     margin: 0;
-    background-color: rgb(241, 241, 241);
-    height: 100%;
-    width: 100%;
-    /* Ensure full coverage in standalone web app mode */
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
   }
 
   body {
