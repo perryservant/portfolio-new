@@ -14,7 +14,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
     };
     
     return (
-        <div className="absolute flex flex-col ml-[30px] mt-[60px] z-[100] w-[300px] max-[820px]:absolute max-[820px]:flex max-[820px]:mt-5 max-[820px]:w-full max-[820px]:px-[10px] max-[820px]:ml-0">
+        <div className="absolute flex flex-col ml-[30px] mt-[45px] z-[100] w-[300px] max-[820px]:absolute max-[820px]:flex max-[820px]:mt-5 max-[820px]:w-full max-[820px]:px-[10px] max-[820px]:ml-0">
             {/* Header Card */}
             <motion.div 
                 initial={{ opacity: 0, y: -20 }}

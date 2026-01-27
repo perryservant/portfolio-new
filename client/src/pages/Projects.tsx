@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { mockApi, Project } from '../data/mockData';
 import { useProject } from '../context/ProjectContext';
-import Clock from '../components/Clock';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -26,12 +24,12 @@ const Projects = () => {
 
     const languageColors: Record<string, string> = {
         JS: "text-[rgb(242,167,6)] border-[rgb(242,167,6)]",
+        TS: "text-[rgb(27,76,225)] border-[rgb(27,76,225)]",
         RCT: "text-[rgb(6,116,242)] border-[rgb(6,116,242)]",
         NODE: "text-[rgb(31,176,2)] border-[rgb(31,176,2)]",
+        FSTFY: "text-[rgb(146,72,238)] border-[rgb(146,72,238)]",
         PY: "text-purple-600 border-purple-600"
     };
-
-    const currentYear = new Date().getFullYear();
 
     return (
         <div className="h-full w-full flex flex-col pb-[env(safe-area-inset-bottom)]">
@@ -123,30 +121,19 @@ const Projects = () => {
                                                             src={`/${project.photos?.[0]}`}
                                                             alt={project.name}
                                                             className="w-full h-full object-cover"
-                                                            animate={{
-                                                                scale: isHovered ? 1.1 : 1,
-                                                            }}
                                                             transition={{ duration: 0.6, ease: "easeOut" }}
                                                         />
                                                         
-                                                        {/* Gradient Overlay */}
-                                                        <motion.div
-                                                            className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/60"
-                                                            animate={{
-                                                                opacity: isHovered ? 1 : 0.3
-                                                            }}
-                                                            transition={{ duration: 0.3 }}
-                                                        />
                                                         
                                                         {/* Project Number - Large and Bold */}
                                                         <div className="absolute top-[25px] left-[25px]">
                                                             <motion.span
                                                                 animate={{
-                                                    scale: isHovered ? 1.1 : 1,
-                                                    opacity: isHovered ? 0.3 : 0.15
-                                                }}
+                                                                scale: isHovered ? 1.1 : 1,
+                                                                opacity: isHovered ? 0.3 : 0.1
+                                                            }}
                                                                 transition={{ duration: 0.3 }}
-                                                                className="text-[120px] font-bold text-white font-grotesk-mono leading-none max-[1024px]:text-[90px] max-[820px]:text-[70px]"
+                                                                className="text-[120px] font-bold text-black font-grotesk-mono leading-none max-[1024px]:text-[90px] max-[820px]:text-[70px]"
                                                             >
                                                                 {String(index + 1).padStart(2, '0')}
                                                             </motion.span>
@@ -162,10 +149,10 @@ const Projects = () => {
                                                             transition={{ duration: 0.4 }}
                                                         >
                                                             <div className="text-center">
-                                                                <span className="text-white text-2xl uppercase font-medium block mb-[10px]">
+                                                                <span className="text-black text-2xl uppercase font-medium block mb-[10px]">
                                                                     {project.name}
                                                                 </span>
-                                                                <span className="text-white/80 text-sm uppercase font-grotesk-mono">
+                                                                <span className="text-black/80 text-sm uppercase font-grotesk-mono">
                                                                     View Project →
                                                                 </span>
                                                             </div>
@@ -217,38 +204,6 @@ const Projects = () => {
                                     </motion.div>
                                 );
                             })}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {/* Footer */}
-            <div className="border-t-2 border-black">
-                <div className="min-h-[60px] flex items-center justify-between px-[50px] max-[820px]:px-[20px] max-[430px]:px-[15px] max-[430px]:flex-col max-[430px]:justify-center max-[430px]:py-[15px] max-[430px]:gap-[10px]">
-                    <div className="flex items-center gap-[30px] max-[820px]:gap-[20px] max-[430px]:flex-col max-[430px]:gap-[10px] max-[430px]:w-full max-[430px]:items-center">
-                        <p className="text-[11px] uppercase font-medium whitespace-nowrap max-[430px]:text-[10px]">
-                            © copyright {currentYear} perry servant
-                        </p>
-                        <div className="max-[430px]:hidden">
-                            <p>{'///////////////////////////////////////////////////'}</p>
-                        </div>
-                        <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
-                            <a 
-                                href="mailto:perry@perryservant.com"
-                                className="text-[11px] uppercase font-medium hover:text-[rgb(154,207,41)] transition-colors duration-300 max-[430px]:text-[10px]"
-                            >
-                                perry@perryservant.com
-                            </a>
-                            <a 
-                                href="https://github.com/perryservant"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center w-[30px] h-[30px] border border-black rounded-full hover:bg-black hover:text-white transition-all duration-300 flex-shrink-0 max-[430px]:w-[26px] max-[430px]:h-[26px]"
-                                aria-label="GitHub"
-                            >
-                                <FaGithub className="text-[16px] max-[430px]:text-[13px]" />
-                            </a>
-                            <Clock/>
                         </div>
                     </div>
                 </div>

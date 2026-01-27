@@ -9,6 +9,7 @@ interface ScrollPortProps {
 const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
     const sectionRef = useRef<(HTMLElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
+    const isScrollingRef = useRef<boolean>(false);
 
     const sections: Array<{
         title: string;
@@ -32,9 +33,36 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
         }
     ];
 
+    // Scroll to section when activeIndex changes programmatically (from navigation tabs)
+    useEffect(() => {
+        const section = sectionRef.current[activeIndex];
+        if (section && containerRef.current && !isScrollingRef.current) {
+            // Check if section is already in view to avoid unnecessary scrolling
+            const container = containerRef.current;
+            const containerRect = container.getBoundingClientRect();
+            const sectionRect = section.getBoundingClientRect();
+            
+            // Only scroll if section is not already in view
+            const isInView = sectionRect.top >= containerRect.top && 
+                           sectionRect.bottom <= containerRect.bottom;
+            
+            if (!isInView) {
+                isScrollingRef.current = true;
+                section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Reset flag after scroll completes
+                setTimeout(() => {
+                    isScrollingRef.current = false;
+                }, 1000);
+            }
+        }
+    }, [activeIndex]);
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
+                // Don't update if we're programmatically scrolling
+                if (isScrollingRef.current) return;
+                
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const index = Number(entry.target.getAttribute('data-index'));
@@ -58,7 +86,11 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
     const handleClick = (index: number) => {
         const section = sectionRef.current[index];
         if (section && containerRef.current) {
-            section.scrollIntoView({ behavior: 'smooth' });
+            isScrollingRef.current = true;
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                isScrollingRef.current = false;
+            }, 1000);
         }
     };
 
@@ -81,9 +113,9 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
                     >
                         <div className="flex flex-col items-center gap-[20px] w-full flex-shrink-0">
                             <h1
-                                className={`text-6xl font-medium uppercase leading-tight max-[1200px]:text-5xl max-[820px]:text-4xl max-[430px]:text-3xl break-words flex-shrink-0 ${
+                                className={`text-6xl font-medium uppercase leading-tight max-[1200px]:text-5xl max-[820px]:text-4xl max-[430px]:text-3xl break-words flex-shrink-0 transition-all duration-[800ms] ease-out ${
                                     activeIndex === idx 
-                                        ? 'opacity-100 translate-y-0 animate-[slideFadeIn_0.8s_forwards]' 
+                                        ? 'opacity-100 translate-y-0' 
                                         : 'opacity-0 translate-y-5'
                                 }`}
                             >

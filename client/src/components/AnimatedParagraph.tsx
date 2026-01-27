@@ -15,8 +15,12 @@ const AnimatedParagraph = ({ text, isActive }: AnimatedParagraphProps) => {
             const timeout = setTimeout(() => {
                 setTrigger(true);
                 setHasAnimated(true);
-            }, 150);
+            }, 200);
             return () => clearTimeout(timeout);
+        } else {
+            // Reset animation state when section becomes inactive
+            setTrigger(false);
+            setHasAnimated(false);
         }
     }, [isActive]);
 
@@ -27,10 +31,10 @@ const AnimatedParagraph = ({ text, isActive }: AnimatedParagraphProps) => {
             {words.map((word, idx) => (
                 <span
                     key={idx}
-                    className={`inline-block transition-opacity duration-300 ${
+                    className={`inline-block transition-opacity duration-500 ease-out ${
                         trigger || hasAnimated ? 'opacity-100' : 'opacity-0'
                     }`}
-                    style={{ animationDelay: `${idx * 0.15}s` }}
+                    style={{ transitionDelay: `${idx * 0.05}s` }}
                 >
                     {word}&nbsp;
                 </span>

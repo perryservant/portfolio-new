@@ -1,5 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { GoGrabber } from "react-icons/go";
+import { Link } from 'react-router-dom';
 import { Project } from '../data/mockData';
 
 interface ProjectCardProps {
@@ -7,7 +6,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
-    const navigate = useNavigate();
 
     const languageColors: Record<string, string> = {
         JS: "text-[rgb(242,167,6)] border-[rgb(242,167,6)]",
@@ -18,10 +16,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
     return (
         <div className="w-full h-full flex flex-col">
-            <div className="h-[23px] w-[50px] bg-white/37 backdrop-blur-[0.8px] flex justify-center items-center mb-[1px] text-[31px] rounded-[5px] cursor-grab active:cursor-grabbing relative group max-[820px]:hidden">
-                <GoGrabber className="rotate-90 w-full group-hover:text-white transition-colors duration-300"/>
-                <span className="font-normal invisible opacity-0 absolute bottom-[110%] left-1/2 -translate-x-1/2 text-white text-[11px] whitespace-nowrap transition-opacity duration-300 z-10 uppercase group-hover:visible group-hover:opacity-100">GRAB</span>
-            </div>
             <div className="flex-1 border-2 border-black rounded-[5px] cursor-pointer">
                 <Link to={`/projectpage/${project.id}`}>
                     <img 

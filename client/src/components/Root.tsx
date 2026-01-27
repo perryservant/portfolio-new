@@ -4,6 +4,7 @@ import { ProjectProvider } from '../context/ProjectContext';
 import NavProfile from "./NavProfile";
 import Profile from "./Profile";
 import LoadingBar from "./LoadingBar";
+import Footer from "./Footer";
 
 interface OutletContext {
     isLoaded: boolean;
@@ -28,9 +29,12 @@ const Root = () => {
         let animationFrameId: number;
 
         const resize = () => {
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
+            // Use full viewport dimensions to cover safe areas (notch/Dynamic Island)
+            // Use visualViewport if available for more accurate dimensions, otherwise fallback to window
+            const width = window.visualViewport?.width || window.innerWidth || document.documentElement.clientWidth;
+            const height = window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
         };
 
         const generateNoise = () => {
@@ -61,28 +65,33 @@ const Root = () => {
 
     return (
         <ProjectProvider>
-            <div className="bg-[rgb(241,241,241)] h-[100dvh] w-full pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] overflow-hidden transition-opacity duration-400">
+            <div className="bg-[rgb(241,241,241)] h-[100dvh] w-full pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] flex flex-col overflow-hidden transition-opacity duration-400" style={{ paddingTop: 0 }}>
                 <canvas
                     ref={canvasRef} 
-                    className="fixed top-0 left-0 w-full h-[100dvh] opacity-[0.08] pointer-events-none z-[9999]"
+                    className="fixed top-0 left-0 opacity-[0.08] pointer-events-none z-[9999]"
+                    style={{ width: '100vw', height: '100dvh', left: 0, top: 0 }}
                 />
                 {isLoading && (
                     <LoadingBar onComplete={() => setIsLoading(false)}/>
                 )}
                 
-                <Profile 
-                    isCollapsedA={isCollapsedA}
-                    setIsCollapsedA={setIsCollapsedA}
-                />
-                <NavProfile 
-                    location={location}
-                    isCollapsedA={isCollapsedA}
-                    setIsCollapsedA={setIsCollapsedA}
-                    isCollapsedB={isCollapsedB} 
-                    setIsCollapsedB={setIsCollapsedB}
-                />
-                <Outlet context={{ isLoaded: !isLoading } as OutletContext}/>
-
+                <div className="pt-[env(safe-area-inset-top)] flex-1 min-h-0 flex flex-col overflow-hidden">
+                    <Profile 
+                        isCollapsedA={isCollapsedA}
+                        setIsCollapsedA={setIsCollapsedA}
+                    />
+                    <NavProfile 
+                        location={location}
+                        isCollapsedA={isCollapsedA}
+                        setIsCollapsedA={setIsCollapsedA}
+                        isCollapsedB={isCollapsedB} 
+                        setIsCollapsedB={setIsCollapsedB}
+                    />
+                    <div className="flex-1 min-h-0 overflow-hidden">
+                        <Outlet context={{ isLoaded: !isLoading } as OutletContext}/>
+                    </div>
+                    <Footer showMarquee={location.pathname === '/'} />
+                </div>
             </div>
         </ProjectProvider>
         

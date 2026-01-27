@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
-import { mockProjects, Project } from '../data/mockData';
-import Clock from '../components/Clock';
-import { FaGithub } from 'react-icons/fa';
+import { mockProjects } from '../data/mockData';
 
 const ProjectPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -28,12 +26,12 @@ const ProjectPage = () => {
 
     const languageColors: Record<string, string> = {
         JS: "text-[rgb(242,167,6)] border-[rgb(242,167,6)]",
+        TS: "text-[rgb(27,76,225)] border-[rgb(27,76,225)]",
         RCT: "text-[rgb(6,116,242)] border-[rgb(6,116,242)]",
         NODE: "text-[rgb(31,176,2)] border-[rgb(31,176,2)]",
+        FSTFY: "text-[rgb(146,72,238)] border-[rgb(146,72,238)]",
         PY: "text-purple-600 border-purple-600"
     };
-    
-    const currentYear = new Date().getFullYear();
 
     // Handle project not found (instant, no loading state)
     if (!projectData) {
@@ -42,7 +40,7 @@ const ProjectPage = () => {
                 <div className="text-center">
                     <h1 className="text-2xl font-medium uppercase mb-[20px]">Project Not Found</h1>
                     <NavLink 
-                        className="text-[13px] uppercase font-medium hover:text-[rgb(154,207,41)] transition-colors inline-flex items-center gap-[8px]"
+                        className="text-[13px] uppercase font-medium hover:text-[rgb(207,171,41)] transition-colors inline-flex items-center gap-[8px]"
                         to='/projects'
                     >
                         ← Back to Projects
@@ -60,7 +58,7 @@ const ProjectPage = () => {
                     {/* Back Button */}
                     <div className="mb-[30px] flex justify-end">
                         <NavLink 
-                            className="text-[13px] uppercase font-medium hover:text-[rgb(154,207,41)] transition-colors inline-flex items-center gap-[8px]"
+                            className="text-[13px] uppercase font-medium hover:text-[rgb(207,171,41)] transition-colors inline-flex items-center gap-[8px]"
                             to='/projects'
                         >
                             ← Back to Projects
@@ -146,38 +144,6 @@ const ProjectPage = () => {
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {/* Bottom Footer with Marquee */}
-            <div className="border-t-2 border-black">
-                <div className="min-h-[60px] flex items-center justify-between px-[50px] max-[820px]:px-[20px] max-[430px]:px-[15px] max-[430px]:flex-col max-[430px]:justify-center max-[430px]:py-[15px] max-[430px]:gap-[10px]">
-                    <div className="flex items-center gap-[30px] max-[820px]:gap-[20px] max-[430px]:flex-col max-[430px]:gap-[10px] max-[430px]:w-full max-[430px]:items-center">
-                        <p className="text-[11px] uppercase font-medium whitespace-nowrap max-[430px]:text-[9px]">
-                            © copyright {currentYear} perry servant
-                        </p>
-                        <div className="max-[430px]:hidden">
-                            <p>{'///////////////////////////////////////////////////'}</p>
-                        </div>
-                        <div className="flex items-center gap-[20px] max-[430px]:gap-[12px]">
-                            <a 
-                                href="mailto:perry@perryservant.com"
-                                className="text-[11px] uppercase font-medium hover:text-[rgb(154,207,41)] transition-colors duration-300 max-[430px]:text-[9px]"
-                            >
-                                perry@perryservant.com
-                            </a>
-                            <a 
-                                href="https://github.com/perryservant"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center w-[30px] h-[30px] border border-black rounded-full hover:bg-black hover:text-white transition-all duration-300 flex-shrink-0 max-[430px]:w-[26px] max-[430px]:h-[26px]"
-                                aria-label="GitHub"
-                            >
-                                <FaGithub className="text-[16px] max-[430px]:text-[13px]" />
-                            </a>
-                            <Clock/>
                         </div>
                     </div>
                 </div>

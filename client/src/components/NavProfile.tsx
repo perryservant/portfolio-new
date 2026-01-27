@@ -152,7 +152,9 @@ const NavProfile = ({
                 <div className="w-auto px-[5px] flex justify-center items-center min-w-fit cursor-pointer" onClick={handleCollapseToggle}>
                     <div className="flex items-center">
                         <p className="font-medium uppercase text-[13px]">cd:</p>
-                        <p className="font-medium uppercase text-[13px] ml-[15px]">\ novellum \</p>
+                        <p className="font-medium uppercase text-[13px] ml-[15px]">\</p>
+                        <p className="font-medium uppercase text-[13px] ml-[15px] hover:text-[rgb(207,171,41)] transition-colors duration-300">novellum</p>
+                        <p className="font-medium uppercase text-[13px] ml-[15px]">\</p>
                     </div>
                 </div>
                 
@@ -166,7 +168,7 @@ const NavProfile = ({
                             <ul className="list-none m-0 p-[8px_0] block">
                                 <li>
                                     <NavLink 
-                                        className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(154,207,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
+                                        className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(207,171,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
                                         onClick={() => {
                                             handleCollapseToggle();
                                         }} 
@@ -177,7 +179,7 @@ const NavProfile = ({
                                 </li>
                                 <li>
                                     <NavLink 
-                                        className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(154,207,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
+                                        className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(207,171,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
                                         onClick={() => {
                                             handleCollapseToggle();
                                         }} 
@@ -192,7 +194,8 @@ const NavProfile = ({
                 </div>
             
                 <div className="w-auto px-[5px] flex justify-center items-center min-w-fit">
-                    <p className="font-medium uppercase text-[13px]">perry_servant \</p>
+                    <NavLink className="font-medium uppercase text-[13px] mr-[15px] hover:text-[rgb(207,171,41)] transition-colors duration-300" to="/">perry_servant</NavLink>
+                    <p className="font-medium uppercase text-[13px]">\</p>
                 </div>
                 <div className="w-auto px-[5px] flex justify-center items-center min-w-fit max-[430px]:hidden">
                     <p className="font-medium uppercase text-[13px]">{breadCrumbs()} \</p>
