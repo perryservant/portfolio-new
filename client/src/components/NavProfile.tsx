@@ -169,7 +169,6 @@ const NavProfile = ({
                                         className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(154,207,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
                                         onClick={() => {
                                             handleCollapseToggle();
-                                            if (isCollapsedA) setIsCollapsedA(false);
                                         }} 
                                         to='/'
                                     >
@@ -181,7 +180,6 @@ const NavProfile = ({
                                         className="block py-[5px] uppercase text-[14px] no-underline text-black hover:text-[rgb(154,207,41)] transition-colors duration-300 hover:bg-none cursor-pointer" 
                                         onClick={() => {
                                             handleCollapseToggle();
-                                            if (!isCollapsedA) setIsCollapsedA(true);
                                         }} 
                                         to='projects'
                                     >

@@ -15,7 +15,7 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
         content: string | ReactNode;
     }> = [
         {
-            title: "Full-Stack Developer",
+            title: "Full-Stack",
             content: "I build robust and scalable web applications using modern technologies like React, Node.js, and PostgreSQL. I am passionate about creating seamless user experiences and efficient backend systems, bridging the gap between design and functionality."
         },
         {
@@ -63,10 +63,11 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
     };
 
     return (
-        <div className="h-full w-full grid grid-cols-[1fr_40px] max-[430px]:flex">
+        <div className="h-full w-full grid grid-cols-[1fr_40px] max-[430px]:flex" style={{ height: '100%' }}>
             <div 
                 ref={containerRef}
                 className="h-full w-full overflow-y-scroll scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden snap-y snap-mandatory"
+                style={{ height: '100%' }}
             >
                 {sections.map((section, idx) => (
                     <section
@@ -75,26 +76,28 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
                         ref={(el) => {
                             sectionRef.current[idx] = el;
                         }}
-                        className="h-full w-full snap-start flex flex-col justify-center items-center font-grotesk-mono text-center px-[20px] max-[1200px]:px-[15px]"
+                        className="h-full w-full snap-start flex flex-col justify-center items-center font-grotesk-mono text-center px-[20px] max-[1200px]:px-[15px] max-[820px]:min-h-0 max-[820px]:py-[20px] max-[820px]:h-full"
+                        style={{ height: '100%', minHeight: '100%' }}
                     >
-                        <h1
-                            className={`text-5xl m-0 max-[1200px]:text-4xl max-[820px]:text-3xl max-[430px]:text-[40px] break-words ${
-                                activeIndex === idx 
-                                    ? 'opacity-100 translate-y-0 animate-[slideFadeIn_0.8s_forwards]' 
-                                    : 'opacity-0 translate-y-5'
-                            }`}
-                        >
-                            {section.title}
-                        </h1>
-                        
-                        {typeof section.content === 'string' ? (
-                            <AnimatedParagraph text={section.content} isActive={activeIndex === idx}/>
-                        ) : (
-                            <div className="flex-1 flex justify-center items-center">
-                                {section.content}
-                            </div>
-                        )}
-                        
+                        <div className="flex flex-col items-center gap-[20px] w-full flex-shrink-0">
+                            <h1
+                                className={`text-6xl font-medium uppercase leading-tight max-[1200px]:text-5xl max-[820px]:text-4xl max-[430px]:text-3xl break-words flex-shrink-0 ${
+                                    activeIndex === idx 
+                                        ? 'opacity-100 translate-y-0 animate-[slideFadeIn_0.8s_forwards]' 
+                                        : 'opacity-0 translate-y-5'
+                                }`}
+                            >
+                                {section.title}
+                            </h1>
+                            
+                            {typeof section.content === 'string' ? (
+                                <AnimatedParagraph text={section.content} isActive={activeIndex === idx}/>
+                            ) : (
+                                <div className="flex justify-center items-center flex-shrink-0">
+                                    {section.content}
+                                </div>
+                            )}
+                        </div>
                     </section>
                 ))}
             </div>

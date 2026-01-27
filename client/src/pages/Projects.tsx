@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { mockApi, Project } from '../data/mockData';
+import { useProject } from '../context/ProjectContext';
 import Clock from '../components/Clock';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -8,6 +9,7 @@ import { FaGithub } from 'react-icons/fa';
 const Projects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const { setSelectedProject } = useProject();
 
     const fetchProjectsData = async () => {
         try {
@@ -109,7 +111,10 @@ const Projects = () => {
                                         onMouseEnter={() => setHoveredIndex(index)}
                                         onMouseLeave={() => setHoveredIndex(null)}
                                     >
-                                        <Link to={`/projectpage/${project.id}`}>
+                                        <Link 
+                                            to={`/projectpage/${project.id}`}
+                                            onClick={() => setSelectedProject(project)}
+                                        >
                                             <div className="group cursor-pointer h-full">
                                                 <div className="bg-white border-2 border-black rounded overflow-hidden transition-all duration-500 h-full flex flex-col hover:shadow-[8px_8px_0_0_rgb(0,0,0)] hover:-translate-x-[4px] hover:-translate-y-[4px]">
                                                     {/* Image Container */}

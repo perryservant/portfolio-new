@@ -77,7 +77,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                 >
                     <div className="p-0">
                         {/* Profile Image Section */}
-                        <div className="flex border-b-2 border-black">
+                        <div className="flex max-[820px]:border-b-2 max-[820px]:border-black">
                             <div className="w-[140px] h-[130px] border-r-2 border-black flex items-center justify-center bg-black/5 flex-shrink-0 max-[820px]:w-[120px] max-[820px]:h-[110px]">
                                 <div className="relative w-full h-full flex justify-center items-center">
                                     <img 
@@ -91,17 +91,17 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                                 <div className="flex justify-center items-center h-[45px] border-b-2 border-black bg-black/5">
                                     <BiCertification className="text-[22px] text-gray-600"/>
                                 </div>
-                                <div className="flex-1 flex flex-col justify-center p-[8px] gap-[3px]">
-                                    <p className="m-0 text-[11px] font-medium uppercase whitespace-nowrap">Front-End Dev</p>
-                                    <p className="m-0 text-[11px] font-medium uppercase whitespace-nowrap">Back-End Dev</p>
-                                    <p className="m-0 text-[11px] font-medium uppercase whitespace-nowrap">Full-Stack Dev</p>
+                                <div className="flex-1 flex flex-col justify-center p-[8px] gap-[3px] max-[820px]:pb-0 max-[820px]:p-[8px_8px_0_8px]">
+                                    <p className="m-0 p-0 text-[11px] font-medium uppercase whitespace-nowrap">Front-End Eng</p>
+                                    <p className="m-0 p-0 text-[11px] font-medium uppercase whitespace-nowrap">Back-End Eng</p>
+                                    <p className="m-0 p-0 text-[11px] font-medium uppercase whitespace-nowrap">Full-Stack Eng</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Name Section */}
-                        <div className="flex justify-center items-center h-[40px] border-b-2 border-black bg-black/5">
-                            <p className="uppercase font-medium m-0 text-[13px]">perry servant</p>
+                        <div className="flex justify-center items-center h-[40px] border-t-2 border-b-2 border-black bg-black/5 max-[820px]:border-t-0 max-[820px]:-mt-[2px] max-[820px]:pt-0 max-[820px]:pb-0">
+                            <p className="uppercase font-medium m-0 p-0 text-[13px] leading-none">perry servant</p>
                         </div>
 
                         {/* Details Section */}

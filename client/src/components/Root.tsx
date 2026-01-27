@@ -14,37 +14,9 @@ const Root = () => {
     const location = useLocation();
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [isCollapsedA, setIsCollapsedA] = useState<boolean>(() => {
-        // Collapse by default if not on home page or if mobile
-        return location.pathname !== '/' || window.innerWidth < 820;
-    });
+    // Always collapsed by default - user must click to expand
+    const [isCollapsedA, setIsCollapsedA] = useState<boolean>(true);
     const [isCollapsedB, setIsCollapsedB] = useState<boolean>(true);
-
-    // Update collapse state when route changes
-    useEffect(() => {
-        if (location.pathname === '/') {
-            // On home page, only collapse if mobile
-            setIsCollapsedA(window.innerWidth < 820);
-        } else {
-            // On other pages, always collapse
-            setIsCollapsedA(true);
-        }
-    }, [location.pathname]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 820) {
-                setIsCollapsedA(true);
-            } else {
-                setIsCollapsedA(false);
-            }
-        };
-        handleResize();
-
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;

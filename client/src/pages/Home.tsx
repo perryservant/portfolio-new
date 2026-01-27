@@ -29,19 +29,19 @@ const Home = () => {
     return (
         <div className="h-full w-full flex flex-col overflow-hidden">
             {/* Hero Section */}
-            <div className="relative flex-1 min-h-0 flex flex-col">
+            <div className="relative flex-1 min-h-0 flex flex-col overflow-hidden" style={{ height: '100%' }}>
                 {/* Background Pattern */}
-                <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-                    <div className="absolute top-[20%] left-[10%] text-[300px] font-bold uppercase font-grotesk-mono whitespace-nowrap">
+                <div className="absolute inset-0 pointer-events-none opacity-[0.02] overflow-hidden max-[820px]:overflow-hidden">
+                    <div className="absolute top-[20%] text-[300px] font-bold uppercase font-grotesk-mono whitespace-nowrap max-[820px]:text-[150px] max-[430px]:text-[100px] max-[820px]:top-[30%]">
                         NOVELLUM
                     </div>
                 </div>
 
                 {/* Main Content */}
-                <div className="relative z-10 flex-1 flex flex-col">
+                <div className="relative z-10 flex-1 flex flex-col h-full">
                     {/* Top Navigation Tabs */}
-                    <div className="px-[50px] pt-[70px] pb-[35px] max-[820px]:px-[20px] max-[820px]:pt-[220px] max-[820px]:pb-[20px] pl-[380px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px]">
-                        <div className="flex gap-[30px] items-center flex-wrap max-[820px]:gap-[15px]">
+                    <div className="px-[50px] pt-[70px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px] max-[820px]:px-[20px] max-[820px]:pt-[220px]">
+                        <div className="ml-[350px] absolute top-[210px] flex gap-[30px] items-center flex-wrap max-[820px]:ml-[0px] max-[820px]:static max-[820px]:gap-[15px] max-[820px]:justify-center">
                             {sections.map((section, idx) => (
                                 <button
                                     key={section.id}
@@ -66,8 +66,8 @@ const Home = () => {
                     </div>
 
                     {/* Content Area */}
-                    <div className="flex-1 min-h-0 px-[50px] pb-[40px] max-[820px]:px-[20px] max-[820px]:pb-[30px] pl-[380px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px]">
-                        <div className="h-full flex max-[1200px]:flex-col">
+                    <div className="flex-1 min-h-0 flex mt-[150px] px-[50px] pb-[40px] max-[1200px]:pl-[350px] max-[1024px]:pl-[50px] max-[820px]:px-[20px] max-[820px]:mt-[0px] max-[820px]:pb-[20px] max-[820px]:flex max-[820px]:items-center max-[820px]:justify-center max-[820px]:pt-0 max-[820px]:overflow-hidden">
+                        <div className="h-full w-full flex items-center max-[1200px]:flex-col max-[1200px]:items-center max-[820px]:h-full max-[820px]:justify-center max-[820px]:overflow-hidden">
                             {/* Left Side - Intro Text */}
                             <div className="w-[380px] flex flex-col justify-center pr-[50px] max-[1200px]:w-full max-[1200px]:pr-0 max-[1200px]:mb-[40px] max-[1200px]:text-center max-[1024px]:hidden">
                                 <motion.div
@@ -94,7 +94,8 @@ const Home = () => {
                             {/* Right Side - Scrollable Content */}
                             <div 
                                 ref={containerRef}
-                                className="flex-1 h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-[1200px]:w-full"
+                                className="flex-1 h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-[1200px]:w-full max-[820px]:h-full max-[820px]:max-h-[calc(100vh-320px)]"
+                                style={{ height: '100%' }}
                             >
                                 {isLoaded && (
                                     <ScrollPort 

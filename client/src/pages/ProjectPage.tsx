@@ -1,39 +1,30 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useMemo } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useProject } from '../context/ProjectContext';
-import { mockApi, Project } from '../data/mockData';
+import { mockProjects, Project } from '../data/mockData';
 import Clock from '../components/Clock';
 import { FaGithub } from 'react-icons/fa';
 
 const ProjectPage = () => {
     const { id } = useParams<{ id: string }>();
-    const [projectData, setProjectData] = useState<Project | null>(null);
-    const { setSelectedProject } = useProject();
-
-    const fetchProjectData = useCallback(async () => {
-        if (!id) return;
-        try {
-            const data = await mockApi.getProject(Number(id));
-            if (data) {
-                setProjectData(data);
-                setSelectedProject(data);
-            }
-        } catch (error) {
-            console.error('Error fetch project data', error);
+    const { selectedProject, setSelectedProject } = useProject();
+    
+    // Get project data instantly from mock data (no async delay)
+    const projectData = useMemo(() => {
+        if (!id) return null;
+        
+        // First check if we already have it in context
+        if (selectedProject && selectedProject.id === Number(id)) {
+            return selectedProject;
         }
-    }, [id, setSelectedProject]);
-
-    useEffect(() => {
-        fetchProjectData();
-    }, [fetchProjectData]);
-
-    if (!projectData) {
-        return (
-            <div className="h-full w-full flex items-center justify-center">
-                <p className="text-lg">Loading...</p>
-            </div>
-        );
-    }
+        
+        // Otherwise, get it directly from mock data (instant, no delay)
+        const project = mockProjects.find(p => p.id === Number(id));
+        if (project) {
+            setSelectedProject(project);
+        }
+        return project || null;
+    }, [id, selectedProject, setSelectedProject]);
 
     const languageColors: Record<string, string> = {
         JS: "text-[rgb(242,167,6)] border-[rgb(242,167,6)]",
@@ -43,6 +34,23 @@ const ProjectPage = () => {
     };
     
     const currentYear = new Date().getFullYear();
+
+    // Handle project not found (instant, no loading state)
+    if (!projectData) {
+        return (
+            <div className="h-full w-full flex flex-col items-center justify-center">
+                <div className="text-center">
+                    <h1 className="text-2xl font-medium uppercase mb-[20px]">Project Not Found</h1>
+                    <NavLink 
+                        className="text-[13px] uppercase font-medium hover:text-[rgb(154,207,41)] transition-colors inline-flex items-center gap-[8px]"
+                        to='/projects'
+                    >
+                        ← Back to Projects
+                    </NavLink>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="h-full w-full flex flex-col">
