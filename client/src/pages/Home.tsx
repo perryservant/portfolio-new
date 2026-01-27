@@ -79,7 +79,7 @@ const Home = () => {
                                     </p>
                                     <Link
                                         to="/projects"
-                                        className="inline-block bg-black text-white px-[28px] py-[10px] text-[11px] uppercase font-medium hover:bg-[rgb(154,207,41)] hover:text-black transition-all duration-300"
+                                        className="inline-block bg-black text-white px-[28px] py-[10px] text-[11px] uppercase font-medium hover:bg-[rgb(207,171,41)] hover:text-black transition-all duration-300"
                                     >
                                         View Work
                                     </Link>
