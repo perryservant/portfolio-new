@@ -66,17 +66,35 @@ const Root = () => {
 
     return (
         <ProjectProvider>
-            <div className="bg-[rgb(241,241,241)] w-full flex flex-col overflow-hidden transition-opacity duration-400" style={{ paddingTop: 0, paddingBottom: 'env(safe-area-inset-bottom)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)', minHeight: '100vh', height: '100vh' }}>
+            <div 
+                className="bg-[rgb(241,241,241)] w-full flex flex-col overflow-hidden transition-opacity duration-400" 
+                style={{ 
+                    paddingTop: 0, 
+                    paddingBottom: 0, 
+                    paddingLeft: 'env(safe-area-inset-left)', 
+                    paddingRight: 'env(safe-area-inset-right)', 
+                    height: '100vh',
+                    maxHeight: '100vh'
+                }}
+            >
                 <canvas
                     ref={canvasRef} 
                     className="fixed opacity-[0.08] pointer-events-none z-[9999]"
-                    style={{ width: '100vw', height: '100vh', left: 0, top: 0 }}
+                    style={{ width: '100vw', height: '100vh', minHeight: '-webkit-fill-available', left: 0, top: 0 }}
                 />
                 {isLoading && (
                     <LoadingBar onComplete={() => setIsLoading(false)}/>
                 )}
                 
-                <div className="pt-[env(safe-area-inset-top)] flex-1 min-h-0 flex flex-col overflow-hidden">
+                <div 
+                    className="flex-1 min-h-0 flex flex-col overflow-hidden"
+                    style={{ 
+                        paddingTop: 'env(safe-area-inset-top)',
+                        paddingBottom: 'env(safe-area-inset-bottom)',
+                        height: 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
+                        maxHeight: 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom))'
+                    }}
+                >
                     <Profile 
                         isCollapsedA={isCollapsedA}
                         setIsCollapsedA={setIsCollapsedA}
