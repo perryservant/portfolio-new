@@ -43,8 +43,8 @@ const Footer = ({ showMarquee = false }: FooterProps) => {
             {showMarquee && (
                 <div className="h-[40px] max-[430px]:h-[30px] flex border-t border-black overflow-hidden opacity-60">
                     <Marquee autoFill={true} speed={40}>
-                        <p className="text-[11px] max-[430px]:text-[8px] uppercase font-medium text-gray-600">
-                            React • Node.js • PostgreSQL • Full-Stack Engineering • Engine Building • UI/UX Design • Architecture • TypeScript
+                        <p className="text-[11px] max-[430px]:text-[8px] uppercase font-medium text-gray-600 mr-[7px]">
+                            React • Node.js • PostgreSQL • Full-Stack Engineering • Engine Building • UI/UX Design • Architecture • TypeScript •
                         </p>
                     </Marquee>
                 </div>
