@@ -115,7 +115,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                                 </div>
                                 <div className="flex-1 p-[15px]">
                                     <p className="m-0 text-[12px] leading-relaxed font-grotesk">
-                                        TypeScript, Git & GitHub, React, Redux, Node.js, Fastify, 
+                                        TypeScript, Git & GitHub, React/Native, Redux, Zustand, Tanstack, Node.js, Fastify, 
                                         Express.js, SQL, PostegresSQL, Web Security, 
                                         Data structures, Algorithms
                                     </p>
@@ -137,7 +137,7 @@ const Profile = ({ isCollapsedA, setIsCollapsedA }: ProfileProps) => {
                                         <span className="uppercase font-medium">Node</span> : 100%
                                     </p>
                                     <p className="m-0 text-[12px]">
-                                        <span className="uppercase font-medium">React</span> : 100%
+                                        <span className="uppercase font-medium">React Native</span> : 100%
                                     </p>
                                     <p className="m-0 text-[12px]">
                                         <span className="uppercase font-medium">Python</span> : 30%

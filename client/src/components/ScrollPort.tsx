@@ -17,11 +17,11 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
     }> = [
         {
             title: "Engineering",
-            content: "I build robust and scalable web applications using modern technologies like React, Node.js, and PostgreSQL. I am passionate about creating seamless user experiences and efficient backend systems, bridging the gap between design and functionality."
+            content: "I build native applications for iOS, Android, macOS, and Windows using React Native and TypeScript. I specialize in creating seamless cross-platform experiences with React Native, leveraging my expertise in modern React ecosystems. My passion lies in delivering high-performance, platform-optimized applications that provide native user experiences across all major platforms using a single codebase."
         },
         {
             title: "Core Competencies",
-            content: "Proficient in TypeScript, React, Node.js, Fastify, Express, PostgreSQL, and MongoDB. Experienced with RESTful APIs, version control with Git, and agile development methodologies to deliver clean and maintainable code."
+            content: "Proficient in TypeScript, React Native, Node.js, Fastify, Zustand, Tanstack, Express, PostgreSQL. Experienced with RESTful APIs, version control with Git, and agile development methodologies to deliver clean and maintainable code."
         },
         {
             title: "Highlighted Projects",
@@ -29,7 +29,7 @@ const ScrollPort = ({ activeIndex, setActiveIndex }: ScrollPortProps) => {
         },
         {
             title: "Skills & Expertise",
-            content: "As a full-stack engineer, I specialize in architecting and building complete systems from the ground up, including custom engines and scalable infrastructure. Proficient in TypeScript, React, Node.js, and PostgreSQL, with expertise in designing full-stack architectures, developing reusable engine components, and implementing production-ready solutions. I focus on writing clean, maintainable code, understanding modern development practices, and continuously improving my technical abilities through collaborative team projects and independent development work."
+            content: "As a full-stack engineer, I specialize in architecting and building complete systems from the ground up, including custom engines and scalable infrastructure. With expertise in designing full-stack architectures, developing reusable engine components, and implementing production-ready solutions. I focus on writing clean, maintainable code, understanding modern development practices, and continuously improving my technical abilities through collaborative team projects and independent development work."
         }
     ];
 
