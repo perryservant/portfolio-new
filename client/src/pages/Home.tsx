@@ -74,7 +74,7 @@ const Home = () => {
                                         Full-Stack<br/>Engineer
                                     </h1>
                                     <p className="font-grotesk text-[14px] leading-relaxed text-gray-700 mb-[35px]">
-                                        Building modern web applications with clean code, 
+                                        Building modern native applications across all platforms with clean code, 
                                         scalable architecture, and thoughtful design.
                                     </p>
                                     <Link
