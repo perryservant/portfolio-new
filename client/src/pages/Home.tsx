@@ -28,7 +28,7 @@ const Home = () => {
                 {/* Background Pattern */}
                 <div className="absolute inset-0 pointer-events-none opacity-[0.02] overflow-hidden max-[820px]:overflow-hidden">
                     <div className="absolute top-[20%] text-[300px] font-bold uppercase font-grotesk-mono whitespace-nowrap max-[820px]:text-[150px] max-[430px]:text-[100px] max-[820px]:top-[30%]">
-                        NOVELLUM
+                        OVELLUM
                     </div>
                 </div>
 

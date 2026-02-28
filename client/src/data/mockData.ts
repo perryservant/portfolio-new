@@ -31,7 +31,7 @@ export const mockProjects: Project[] = [
   },
   {
     id: 3,
-    name: "Novellum",
+    name: "Ovellum",
     photos: ["imgs/nov1.png", "imgs/nov2.png"],
     description: "A comprehensive backend-as-a-service platform designed to power modern business websites and operations. Provides a robust API infrastructure with user authentication, database management, file storage, and real-time capabilities. Features include RESTful and GraphQL API endpoints, role-based access control, automated data validation, webhook integrations, and scalable cloud infrastructure. Built with Node.js and PostgreSQL, Novellum enables businesses to rapidly deploy backend services without managing complex server infrastructure, allowing teams to focus on building exceptional frontend experiences and core business logic.",
     language_used: ["TS", "RCT", "FSTFY"],

@@ -45,7 +45,7 @@ const LoadingBar = ({ onComplete }: LoadingBarProps) => {
         <div className={`fixed top-0 left-0 w-screen h-full bg-[rgb(241,241,241)] flex justify-center items-center z-[9998] transition-opacity duration-500 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
             <div className="flex flex-col items-center">
                 <img src="/imgs/g3.svg" alt="" className="h-10 w-[60px]"/>
-                <p className="font-grotesk font-medium pl-[10px]">Novellum</p>
+                <p className="font-grotesk font-medium pl-[10px]">OVELLUM</p>
             </div>
             <div className="w-screen relative">
                 {/* Label above bar */}
