@@ -153,7 +153,7 @@ const NavProfile = ({
                     <div className="flex items-center">
                         <p className="font-medium uppercase text-[13px]">cd:</p>
                         <p className="font-medium uppercase text-[13px] ml-[15px]">\</p>
-                        <p className="font-medium uppercase text-[13px] ml-[15px] hover:text-[rgb(207,171,41)] transition-colors duration-300">novellum</p>
+                        <p className="font-medium uppercase text-[13px] ml-[15px] hover:text-[rgb(207,171,41)] transition-colors duration-300">ovellum</p>
                         <p className="font-medium uppercase text-[13px] ml-[15px]">\</p>
                     </div>
                 </div>
