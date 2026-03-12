@@ -33,7 +33,7 @@ export const mockProjects: Project[] = [
     id: 3,
     name: "Client Portal App",
     photos: ["imgs/Mockup7.jpg", "imgs/Mockup1.jpg"],
-    description: "",
+    description: "A cross-platform mobile app delivering live project updates, team coordination, and financial tracking to construction clients, keeping stakeholders informed at every stage of the build.",
     language_used: ["RCT", "TS", "FSTFY"],
     project_type: "Cross-Plartform Apps",
     client_name: "Trinity Corp Development"
