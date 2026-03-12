@@ -26,11 +26,20 @@ export const mockProjects: Project[] = [
     photos: ["imgs/wet1.png", "imgs/wet2.png"],
     description: "A full-stack e-commerce platform built with React and Node.js. Features include user authentication, product catalog, shopping cart, and secure payment processing. The application demonstrates modern web development practices with responsive design and optimized performance.",
     language_used: ["JS", "RCT", "NODE"],
-    project_type: "E-commerce Platform",
+    project_type: "E-commerce Platform, Desktop App",
     client_name: "Covexco inc."
   },
   {
     id: 3,
+    name: "Client Portal App",
+    photos: ["imgs/Mockup7.jpg", "imgs/Mockup1.jpg"],
+    description: "",
+    language_used: ["RCT", "TS", "FSTFY"],
+    project_type: "Cross-Plartform Apps",
+    client_name: "Trinity Corp Development"
+  },
+  {
+    id: 4,
     name: "Ovellum Mgmt",
     photos: ["imgs/nov1.png", "imgs/nov2.png"],
     description: "A comprehensive backend-as-a-service platform designed to power modern business websites and operations. Provides a robust API infrastructure with user authentication, database management, file storage, and real-time capabilities. Features include RESTful and GraphQL API endpoints, role-based access control, automated data validation, webhook integrations, and scalable cloud infrastructure. Built with Node.js and PostgreSQL, Novellum enables businesses to rapidly deploy backend services without managing complex server infrastructure, allowing teams to focus on building exceptional frontend experiences and core business logic.",
@@ -39,7 +48,7 @@ export const mockProjects: Project[] = [
     client_name: "Personal Project"
   },
   {
-    id: 4,
+    id: 5,
     name: "Portfolio",
     photos: ["imgs/port.png", "imgs/port2.png"],
     description: "A modern, fully responsive portfolio web application showcasing professional work and technical expertise. Built with TypeScript and React, featuring smooth animations powered by Framer Motion, a floating profile card component with collapsible navigation, and an interactive scroll-based content system with snap scrolling. The design emphasizes clean typography, custom fonts, and a minimalist aesthetic with thoughtful micro-interactions. Features include a custom draggable navigation menu with smooth easing animations and touch support, terminal-style breadcrumb navigation, a dynamic projects showcase with hover effects, detailed project pages, responsive layouts optimized for all screen sizes, and a reusable component architecture. Styled entirely with Tailwind CSS for maintainability and performance. Deployed on GitHub Pages with optimized routing and loading states.",
