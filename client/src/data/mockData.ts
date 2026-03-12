@@ -25,7 +25,7 @@ export const mockProjects: Project[] = [
     name: "The Wetland Shop",
     photos: ["imgs/wet1.png", "imgs/wet2.png"],
     description: "A full-stack e-commerce platform built with React and Node.js. Features include user authentication, product catalog, shopping cart, and secure payment processing. The application demonstrates modern web development practices with responsive design and optimized performance.",
-    language_used: ["JS", "RCT", "NODE"],
+    language_used: ["JS", "RCT", "NODE", "FSTFY"],
     project_type: "E-commerce Platform, Desktop App",
     client_name: "Covexco inc."
   },
